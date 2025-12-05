@@ -9,6 +9,12 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@studio-freight/lenis": "^1.0.42",
+    "embla-carousel": "^8.6.0",
+    "embla-carousel-react": "^8.6.0",
+    "gsap": "^3.13.0",
+    "lucide-react": "^0.554.0",
+    "mathjs": "^15.1.0",
     "next": "16.0.3",
     "react": "19.2.0",
     "react-dom": "19.2.0"

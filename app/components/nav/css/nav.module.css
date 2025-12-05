@@ -1,0 +1,34 @@
+.navCont {
+  position: fixed;
+  width: 100%;
+  z-index: 9999;
+  pointer-events: auto;
+  top: 0;
+  visibility: hidden;
+}
+
+
+
+/* každá položka = mini quiet pill */
+.navCont ul li {
+  padding: 9px 20px;
+  border-radius: 40px;
+  font-weight: 500;
+  font-size: 15px;
+  font-weight: 600;
+
+   color: rgba(var(--brand-white-rgb), 0.75);
+  background: transparent;
+
+  transition: 0.25s ease;
+}
+
+/* hover animace = shodná logika jako pills dole */
+.navCont ul li:hover {
+  color: var(--brand-white);
+  background: rgba(var(--brand-primary-rgb), 0.28);
+  border-color: rgba(var(--brand-primary-rgb), 0.45);
+  transform: translateY(-1px);
+  cursor: pointer;
+}
+

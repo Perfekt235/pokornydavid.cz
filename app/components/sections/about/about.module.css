@@ -1,0 +1,11 @@
+.aboutCont {
+  min-height: 100vh;
+  width: 100%;
+  position: sticky;
+  top: 0;
+  background: var(--bg-section-light);
+  z-index: 10;
+  position: sticky; /* nutné pro after overlay */
+  display: flex;
+  flex-direction: column;
+}

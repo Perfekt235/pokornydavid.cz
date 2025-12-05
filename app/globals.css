@@ -1,26 +1,261 @@
-@import "tailwindcss";
-
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* ============================================================
+     BRAND CORE – MINT / GREEN IDENTITY
+  ============================================================ */
+
+  /* z Elementor: --e-global-color-primary / accent (#79EB93) */
+  --brand-primary: #79eb93;
+  --brand-primary-rgb: 121, 235, 147;
+
+  /* tvoje soft mint + RGB */
+  --brand-primary-soft: #cfffd9;
+  --brand-primary-soft-rgb: 207, 255, 217;
+
+  /* deep green pro hover / těžší akcenty */
+  --brand-primary-deep: #4bbf67;
+  --brand-primary-deep-rgb: 75, 191, 103;
+
+  /* z Elementor: #D6FFAD → tertiary highlight (lehce žlutější) */
+  --brand-tertiary: #d6ffad;
+  --brand-tertiary-rgb: 214, 255, 173;
+
+  --brand-tertiary-tint: #d6ffad4d;
+
+  /* ============================================================
+     NEUTRALS & TEXT 
+  ============================================================ */
+
+  /* e-global-color-secondary: #000000 */
+  --brand-black: #000000;
+  --brand-black-rgb: 0, 0, 0;
+
+  /* tvoje hlavní dark + e-global-color-fb64a1b: #161616 jako deep */
+  --brand-dark: #131313;
+  --brand-dark-rgb: 19, 19, 19;
+
+  --brand-deep-dark: #161616; /* extra pro hero bg / footer */
+  --brand-deep-dark-rgb: 22, 22, 22;
+
+  /* e-global-color-text: #666666 */
+  --brand-text: #666666;
+  --brand-text-rgb: 102, 102, 102;
+
+  /* e-global-color-afae2ca: #D0D0D0 → border / divider */
+  --brand-border: #d0d0d0;
+  --brand-border-rgb: 208, 208, 208;
+
+  /* e-global-color-1dbe2c3: #F3F5F4 → světlejší background */
+  --brand-light: #f3f5f4;
+  --brand-light-rgb: 243, 245, 244;
+
+  /* e-global-color-15050fc: #FFFFFF */
+  --brand-white: #ffffff;
+  --brand-white-rgb: 255, 255, 255;
+
+  /* ============================================================
+     DEPTH / TEAL VRSTVA – důvěra & serióznost
+  ============================================================ */
+
+  --brand-deep-trust: #0f3a2f; /* hluboký teal */
+  --brand-deep-trust-rgb: 15, 58, 47;
+
+  --brand-muted-teal: #8fe1c3; /* propojuje mint & deep */
+  --brand-muted-teal-rgb: 143, 225, 195;
+
+  --brand-premium-warm: #d8d1b6; /* champagne beige */
+  --brand-premium-warm-rgb: 216, 209, 182;
+
+  /* ============================================================
+     SEMANTICKÉ ALIASY
+  ============================================================ */
+
+  --text-primary: var(--brand-dark);
+  --text-primary-rgb: var(--brand-dark-rgb);
+
+  --text-secondary: var(--brand-text);
+  --text-secondary-rgb: var(--brand-text-rgb);
+
+  --text-inverse: var(--brand-white);
+  --text-inverse-rgb: var(--brand-white-rgb);
+
+  --bg-page: var(--brand-light);
+  --bg-page-rgb: var(--brand-light-rgb);
+
+  --bg-section-light: var(--brand-light);
+  --bg-section-rgb: var(--brand-white-rgb);
+
+  --bg-section-dark: #fffbe6;
+
+  /* ============================================================
+     HERO GRADIENT — pro wow efekt + větší focus na text (copy/paste)
+  ============================================================ */
+
+  --text-gradient-hero: linear-gradient(
+    90deg,
+    var(--brand-primary) 16%,
+    var(--brand-tertiary) 65%
+  );
+
+  --hero-overlay-gradient: linear-gradient(
+    90deg,
+    rgba(15, 58, 47, 0.82) 0%,
+    rgba(15, 58, 47, 0.55) 32%,
+    rgba(19, 19, 19, 0.35) 58%,
+    rgba(19, 19, 19, 0) 100%
+  );
+
+  /* pokud chceš jemnější mood verzi: */
+  --hero-overlay-gradient-soft: linear-gradient(
+    90deg,
+    rgba(15, 58, 47, 0.68) 0%,
+    rgba(15, 58, 47, 0.42) 35%,
+    rgba(19, 19, 19, 0.22) 65%,
+    rgba(19, 19, 19, 0) 100%
+  );
+
+  --trustbar-gradient-bg: linear-gradient(
+    180deg,
+    rgba(var(--brand-deep-trust-rgb), 0.96) 0%,
+    rgba(var(--brand-deep-trust-rgb), 1) 45%,
+    rgba(var(--brand-deep-dark-rgb), 1) 100%
+  );
+
+  /* ============================================================
+     NEUTRALS, OVERLAYS, BUTTONS, LINKS...
+     nechávám beze změn (správně navrženo)
+  ============================================================ */
+
+  --gray-50: #fafafa;
+  --gray-100: #f1f1f1;
+  --gray-200: #e1e1e1;
+  --gray-300: #c7c7c7;
+  --gray-400: #9a9a9a;
+  --gray-500: #6c6c6c;
+  --gray-600: #4a4a4a;
+  --gray-700: #2e2e2e;
+  --gray-800: #1b1b1b;
+  --gray-900: #0f0f0f;
+
+  --black-10: rgba(0, 0, 0, 0.1);
+  --black-20: rgba(0, 0, 0, 0.2);
+  --black-40: rgba(0, 0, 0, 0.4);
+  --black-60: rgba(0, 0, 0, 0.6);
+  --black-80: rgba(0, 0, 0, 0.8);
+
+  --white-10: rgba(255, 255, 255, 0.1);
+  --white-20: rgba(255, 255, 255, 0.2);
+  --white-40: rgba(255, 255, 255, 0.4);
+  --white-80: rgba(255, 255, 255, 0.8);
+
+  --glass-bg: rgba(0, 0, 0, 0.35);
+  --glass-blur: 22px;
+
+  --text-primary: var(--brand-dark);
+  --text-secondary: var(--gray-500);
+  --text-inverse: var(--brand-white);
+  --text-muted: var(--gray-400);
+
+  --bg-page: var(--brand-light);
+  --bg-section: var(--brand-white);
+  --bg-section-alt: var(--gray-50);
+
+  --bg-card: var(--brand-white);
+  --bg-card-soft: rgba(255, 255, 255, 0.92);
+
+  --bg-hero-dark: var(--brand-dark);
+  --bg-footer: var(--brand-dark);
+
+  --bg-overlay: var(--black-60);
+  --bg-chip: var(--gray-100);
+
+  --btn-primary-bg: var(--brand-primary);
+  --btn-primary-text: var(--brand-dark);
+  --btn-primary-bg-hover: var(--brand-primary-deep);
+
+  --btn-secondary-bg: rgba(var(--brand-deep-trust-rgb), 0.22);
+  --btn-secondary-bg-hover: rgba(var(--brand-deep-trust-rgb), 0.36);
+
+  --btn-secondary-border: var(--white-20);
+  --btn-secondary-border-hover: var(--brand-muted-teal);
+
+  --btn-secondary-text: var(--brand-white);
+  --btn-secondary-shadow-hover: var(--black-40);
+
+  --btn-ghost-text: var(--brand-white);
+  --btn-ghost-bg-hover: rgba(255, 255, 255, 0.06);
+
+  --btn-cta-gradient: linear-gradient(
+    90deg,
+    var(--brand-primary),
+    var(--brand-tertiary)
+  );
+
+  --btn-cta-gradient-hover: linear-gradient(
+    90deg,
+    var(--brand-tertiary),
+    var(--brand-primary)
+  );
+
+  --link-color: var(--brand-dark);
+  --link-hover: var(--brand-primary);
+
+  --border-light: var(--gray-200);
+  --border-strong: var(--gray-400);
+
+  --layout-gutter: 12px;
+
+  --brand-nav-bg: linear-gradient(to top, #0f3a2f 0%, rgb(15 58 47) 51%, #0f3a2f 126%);
+  /* --brand-bottom-hero: linear-gradient(
+    180deg,
+    rgba(var(--brand-deep-trust-rgb), 0.55) 0%,
+    rgba(var(--brand-deep-trust-rgb), 0.78) 46%,
+    rgb(22 22 22 / 66%) 100%
+  ); */
+  --brand-nav-border-tint: #d8fbb663;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--bg-page);
+  color: var(--text-primary);
+  font-family: var(--font-base, "DM Sans", sans-serif);
+  font-size: 16px;
+  line-height: 1.45;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overscroll-behavior: none;
+  height: 100%;
+}
+
+/* Reset všeho základního bordelu */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: auto !important; /* Lenis přebírá control */
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: var(--link-color);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+
+button {
+  font-family: inherit;
+}
+
+/* Výchozí barvy textu pro sekce */
+section {
+  color: var(--text-primary);
 }

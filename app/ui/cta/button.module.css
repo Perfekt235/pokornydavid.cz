@@ -1,0 +1,168 @@
+/* ============================================
+   BASE BUTTON
+============================================ */
+.button {
+  all: unset;
+  display: inline-flex;
+  align-items: center;
+  justify-content: start;
+  cursor: pointer;
+  user-select: none;
+  border-radius: 8px;
+  padding: 14px 26px;
+  min-width: 160px;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 1;
+  transition: background-color 0.2s ease, color 0.2s ease,
+    border-color 0.2s ease, box-shadow 0.25s ease, transform 0.2s ease;
+
+  position: relative;
+  justify-content: space-between;
+}
+
+/* ============================================
+   PRIMARY (solid accent)
+============================================ */
+.primary {
+  background: var(--btn-primary-bg);
+  color: var(--btn-primary-text);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+}
+.primary:hover {
+  background: var(--btn-primary-bg-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
+}
+
+/* ============================================
+   CTA — soft warmth + invite feeling
+============================================ */
+.cta {
+    background-image: var(--btn-cta-gradient);
+    color: var(--brand-dark);
+    box-shadow: 0px 0px 10px -1px var(--brand-muted-teal);
+    transition: all .28s;
+}
+
+.cta:hover {
+  background-image: var(--btn-cta-gradient-hover);
+  box-shadow: 0 0 18px var(--brand-muted-teal);
+  color: var(--brand-dark);
+}
+
+/* --- CTA ICON CLICK EFFECT --- */
+.cta .iconRight {
+  margin-left: 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* při hoveru na CTA ikonka „klikne“ */
+.cta:hover .iconRight {
+  animation: cta-icon-click 0.50s cubic-bezier(.26,.78,.48,1.18) forwards;
+}
+
+@keyframes cta-icon-click {
+  0% {
+    transform:  scale(1);
+  }
+  35% {
+    transform: scale(0.2);  /* stlačení */
+  }
+  100% {
+    transform: scale(1);  /* skončí lehce vepředu */
+  }
+}
+
+/* ============================================
+   SECONDARY — čistší outline + lux look
+============================================ */
+.secondary {
+  background: rgba(var(--brand-primary-rgb), 0.16);     /* ⬆ bylo 0.10 */
+  border: 1.4px solid rgba(var(--brand-primary-rgb), 0.45); /* pevnější hrana */
+  color: var(--brand-white);
+  backdrop-filter: blur(5px);
+  box-shadow: 0 4px 20px rgba(0,0,0,.28);
+  transition: all .25s ease;
+}
+
+/* hover — jasněji, ale stále ne jako CTA */
+.secondary:hover {
+  background: rgba(var(--brand-primary-rgb), 0.30); /* čitelnější plnost */
+  border-color: rgba(var(--brand-primary-rgb), 0.65);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 26px rgba(0,0,0,.34);
+}
+
+/* ikona šťouchne dopředu — jako CTO light */
+.secondary .iconRight {
+  margin-left: 8px;
+  transition: transform .25s ease;
+}
+
+.secondary:hover .iconRight {
+  transform: translateX(4px);
+}
+/* ============================================
+   GHOST (transparent, used on dark bg)
+============================================ */
+.ghost {
+  background: transparent;
+  color: var(--brand-white);
+}
+.ghost:hover {
+  background: rgba(255, 255, 255, 0.08);
+  transform: translateY(-1px);
+}
+
+/* ============================================
+   SIZES
+============================================ */
+.sm {
+  padding: 10px 18px;
+  font-size: 14px;
+}
+
+.md {
+  padding: 14px 26px;
+  font-size: 16px;
+}
+
+.lg {
+  padding: 18px 32px;
+  font-size: 18px;
+}
+
+/* ============================================
+   ICONS
+============================================ */
+.iconLeft,
+.iconRight {
+  display: inline-flex;
+  transform: translateY(1px);
+}
+
+/* ============================================
+   LOADING
+============================================ */
+.loading {
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+.loader {
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

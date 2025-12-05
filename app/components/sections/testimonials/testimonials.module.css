@@ -1,0 +1,7 @@
+.testimonialsCont {
+    height: 100vh;
+    width: 100%;
+    z-index: 11;
+    position: relative;
+    background-color: var(--bg-section-light);
+}

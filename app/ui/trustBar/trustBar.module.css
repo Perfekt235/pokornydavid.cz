@@ -1,0 +1,120 @@
+/* ============================================
+   TRUSTBAR — spodní navigace
+============================================ */
+.trustBar {
+  position: fixed;
+  bottom: 15px;
+   left: 0;
+  right: 0; 
+   margin: 0 auto;    /* centrum */
+  max-width: 75%;
+
+  /* centrování */
+  height: 95px;
+  overflow: hidden;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 48px;
+border-radius: 20px;
+
+  background: var(--brand-nav-bg);
+  border: 1px solid var(--brand-tertiary-tint);
+
+  box-shadow: 0px -5px 20px 0px #00000059, inset 0 -4px 18px 3px #d6ffad1f;
+
+  z-index: 99999;
+  transition: transform 0.6s ease-out, opacity 0.4s ease-out;
+}
+
+.staticRow {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  justify-content: center; /* nebo flex-start, podle layoutu */
+  width: 100%;
+}
+
+/* viditelný stav */
+.trustBarVisible {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* schovaný + nekilkatelný */
+.trustBarHidden {
+  transform: translateY(120%);
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* ============================================
+   BUTTONY
+============================================ */
+.navButton {
+  appearance: none;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  padding: 12px 25px;
+
+  border-radius: 30px;
+  border: 1px solid rgba(214, 255, 173, 0.55);
+
+  color: rgba(229, 248, 220, 0.95);
+  font-size: 15px;
+  font-weight: 600;
+
+  transition: background 0.22s ease-out, border-color 0.22s ease-out,
+    color 0.22s ease-out, transform 0.16s ease-out, box-shadow 0.22s ease-out;
+}
+
+/* ikonka */
+.navIcon {
+  width: 17px;
+  height: 17px;
+  flex-shrink: 0;
+  opacity: 0.92;
+}
+
+/* ať se text neláme */
+.navButton span {
+  white-space: nowrap;
+}
+
+/* ============================================
+   HOVER
+============================================ */
+.navButton:hover {
+  background: rgba(214, 255, 173, 0.1);
+  border-color: rgba(214, 255, 173, 0.85);
+  color: #f3ffe9;
+  transform: translateY(-1px);
+  box-shadow: 0 0 0 1px rgba(214, 255, 173, 0.35),
+    0 10px 22px rgba(0, 0, 0, 0.55);
+}
+
+/* PRESS */
+.navButton:active {
+  transform: translateY(0);
+  box-shadow: 0 0 0 1px rgba(214, 255, 173, 0.4), 0 4px 14px rgba(0, 0, 0, 0.6);
+}
+
+/* ============================================
+   ACTIVE STAV BUTTONU (napojené na activeSection)
+============================================ */
+.navButtonActive {
+  background: rgba(214, 255, 173, 0.16);
+  border-color: rgba(214, 255, 173, 0.95);
+  color: rgba(7, 36, 18, 0.95);
+
+  box-shadow: 0 0 0 1px rgba(214, 255, 173, 0.55),
+    0 12px 26px rgba(0, 0, 0, 0.65);
+}

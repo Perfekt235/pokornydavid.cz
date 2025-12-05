@@ -1,0 +1,13 @@
+
+
+
+.heroSticky {
+  position: relative;
+  top: 0;
+  height: 100vh;
+  z-index: 1;
+}
+
+.TrustBar {
+  background-color: var(--bg-section-dark);
+}
