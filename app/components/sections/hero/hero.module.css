@@ -211,7 +211,7 @@
   bottom: 1px;
 }
 
-/* .heroGlass {
+.heroGlass {
   position: absolute;
   inset: 0;
   pointer-events: none;
@@ -222,7 +222,7 @@
   mix-blend-mode: soft-light; 
 
   opacity: 0.1;
-} */
+}
 
 /* DARK LAYER – filmovější stín zleva */
 .bgLayer {
@@ -314,7 +314,6 @@
   color: var(--brand-tertiary);
   cursor: pointer;
   position: relative;
-  backdrop-filter: blur(35px);
   overflow: visible; /* !!! dovolí kruhům jít ven */
   margin-left: 55px;
 }
