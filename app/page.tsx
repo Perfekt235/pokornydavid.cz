@@ -67,7 +67,7 @@ export default function Page() {
     <>
       <Nav />
       <main>
-        <section id="hero" data-section-key="hero" className={s.heroSticky}>
+        <section id="hero" data-section-key="hero">
           <Hero variants={heroVariants} activeSession={activeSection} />
         </section>
 
