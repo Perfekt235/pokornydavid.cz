@@ -67,7 +67,7 @@ const Hero = ({ variants, activeSession }: HeroProps) => {
                 <GradientText
                   gradientVar="--text-gradient-hero"
                   className={s.highlight}
-                  animationSpeed={5}
+                  animationSpeed={1}
                 >
                   {highlight}
                 </GradientText>
