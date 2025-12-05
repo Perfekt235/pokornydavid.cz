@@ -17,6 +17,7 @@ import {
 } from "lucide-react";
 import GradientText from "@/app/ui/animations/GradientText";
 import LogoMark from "@/app/svgr/LogoMark";
+import { useViewport } from "../../Providers/ViewportProvider";
 
 export type HeroContent = {
   eyebrow: string;
@@ -38,8 +39,9 @@ type HeroProps = {
 };
 
 const Hero = ({ variants, activeSession }: HeroProps) => {
-  const [index, setIndex] = useState(6);
+  const [index, setIndex] = useState(5);
   const content = variants[index];
+  const { width, height } = useViewport();
 
   const { line1, line2, highlight } = content.title;
   const hasHighlight = highlight && line1.includes(highlight);
@@ -53,6 +55,46 @@ const Hero = ({ variants, activeSession }: HeroProps) => {
     <section className={s.heroCont}>
       <div className={s.bgLayer} />
       <div className={s.heroNoise} />
+      <div className={s.topStrip}>
+        <div className={s.leftBox}>
+          <LogoMark />
+          {width > 521 ? (
+            <div className={s.brandText}>
+              <span className={s.name}>David Pokorný</span>
+              <span className={s.role}>Finanční plánování</span>
+            </div>
+          ) : null}
+        </div>
+        {width <= 521 ? (
+          <div className={s.brandText}>
+            <span className={s.name}>David Pokorný</span>
+            <span className={s.role}>Finanční plánování</span>
+          </div>
+        ) : null}
+        <div className={s.rightBox}>
+          <a href="#about" className={s.topLink}>
+            <User2 className={s.topIcon} />
+            <span>Kdo jsem</span>
+          </a>
+          <a href="#help" className={s.topLink}>
+            <HeartHandshake className={s.topIcon} />
+            <span>S čím pomáhám</span>
+          </a>
+          <a href="#process" className={s.topLink}>
+            <Workflow className={s.topIcon} />
+            <span>Jak pracuji</span>
+          </a>
+          <a href="#testimonials" className={s.topLink}>
+            <Quote className={s.topIcon} />
+            <span>Reference</span>
+          </a>
+        </div>
+        <div className={s.burgerMenu}>
+          <span className={s.burgerTop} />
+          <span className={s.burgerMiddle} />
+          <span className={s.burgerBottom} />
+        </div>
+      </div>
 
       <div className={s.heroInner}>
         <div className={s.heroGlass} />
@@ -87,7 +129,11 @@ const Hero = ({ variants, activeSession }: HeroProps) => {
             variant="cta"
             label={content.cta.primary.label}
             href={content.cta.primary.href}
-            iconRight={<PhoneCall style={{ color: "var(--brand-dark)" }} />}
+            iconRight={
+              <PhoneCall
+                style={{ color: "var(--brand-dark)", marginLeft: "7px" }}
+              />
+            }
             size="md"
             className={s.heroCta}
           />
@@ -117,35 +163,6 @@ const Hero = ({ variants, activeSession }: HeroProps) => {
           Pojištění odpovědnosti
         </div>
       </div>
-      <div className={s.topStrip}>
-        <div className={s.leftBox}>
-          <LogoMark />
-
-          <div className={s.brandText}>
-            <span className={s.name}>David Pokorný</span>
-            <span className={s.role}>Finanční plánování</span>
-          </div>
-        </div>
-        <div className={s.rightBox}>
-          <a href="#about" className={s.topLink}>
-            <User2 className={s.topIcon} />
-            <span>Kdo jsem</span>
-          </a>
-          <a href="#help" className={s.topLink}>
-            <HeartHandshake className={s.topIcon} />
-            <span>S čím pomáhám</span>
-          </a>
-          <a href="#process" className={s.topLink}>
-            <Workflow className={s.topIcon} />
-            <span>Jak pracuji</span>
-          </a>
-          <a href="#testimonials" className={s.topLink}>
-            <Quote className={s.topIcon} />
-            <span>Reference</span>
-          </a>
-        </div>
-      </div>
-
       {/* switcher */}
       {/* <div className={s.variantSwitcher}>
         <button onClick={prev}>←</button>
