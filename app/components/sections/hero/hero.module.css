@@ -254,7 +254,7 @@
   justify-content: center;
   gap: 20px;
   /* border-right: 1px solid var(--brand-tertiary-tint); */
-  
+
   padding: 50px 50px 50px 90px;
   box-shadow: inset -5px 0 20px -1px #0000008c, 4px 0px 20px -1px #0000008c;
   color: var(--brand-white);
@@ -312,40 +312,40 @@
   color: var(--brand-tertiary);
   cursor: pointer;
   position: relative;
-  overflow: visible; /* !!! dovolí kruhům jít ven */
+  overflow: visible;
   margin-left: 55px;
 }
 
-.playCont::after,
+/* ===== OPTIMALIZOVANÝ JEDEN RIPPLE ===== */
 .playCont::before {
   content: "";
   position: absolute;
   inset: 0;
   border-radius: 50%;
-
-  background: var(--brand-tertiary);
-
-  opacity: 0.15; /* tady děláš jemnost, ne v barvě */
-  animation: pulse 3.2s ease-out infinite;
   pointer-events: none;
+
+  /* Místo opacity animace → statický gradient */
+  background: radial-gradient(
+    circle,
+    rgba(var(--brand-tertiary-rgb), 0.15) 60%,
+    rgba(var(--brand-tertiary-rgb), 0.16) 40%,
+    rgba(var(--brand-tertiary-rgb), 0) 70%
+  );
+    border: 1px solid var(--brand-tertiary-tint);
+
+  animation: pulse-lite 3.6s ease-out infinite;
+  will-change: transform;
 }
 
-.playCont::after {
-  animation-delay: 1.3s;
-}
-
-.playCont::before {
-  animation-delay: 0s;
-}
-
-@keyframes pulse {
+@keyframes pulse-lite {
   0% {
-    transform: scale(0.8);
-    opacity: 0.2;
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.5); /* mnohem méně náročné */
   }
   100% {
-    transform: scale(2.7); /* jde ven! */
-    opacity: 0;
+    transform: scale(1); /* mnohem méně náročné */
   }
 }
 .heroCta {
