@@ -1,34 +1,166 @@
 .navCont {
-  position: fixed;
   width: 100%;
-  z-index: 9999;
-  pointer-events: auto;
+  height: 90px;
+  background: #0f3a2f;
+  box-shadow: inset 0 -8px 6px -6px #00000073, 0px -2px 20px 0px #00000073;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  gap: 15px;
+  z-index: 999;
+  position: fixed;
   top: 0;
-  visibility: hidden;
+  left: 0;
+  transition: all 0.8s ease;
 }
 
+.leftBox {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+.rightBox {
+  display: flex;
+  align-items: center;
+  gap: 34px; /* menší rozestupy, ať to není jak tramvaj */
+}
 
-
-/* každá položka = mini quiet pill */
-.navCont ul li {
-  padding: 9px 20px;
-  border-radius: 40px;
+/* základní stav */
+.topLink {
+  font-size: 15px;
   font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: rgba(236, 247, 241, 0.9);
+
+  padding: 8px 18px;
+  border-radius: 30px;
+  text-decoration: none;
+
+  border: 1px solid var(--brand-tertiary-tint);
+  background: rgba(7, 24, 16, 0.35); /* jemný tmavý ghost */
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.35);
+  transition: background 0.18s ease, border-color 0.18s ease, color 0.18s ease,
+    transform 0.16s ease, box-shadow 0.18s ease;
+}
+
+/* hover – lehké zvýraznění, žádný neon */
+.topLink:hover {
+  background: rgba(12, 40, 24, 0.85);
+  border-color: rgba(214, 255, 173, 0.38);
+  color: #f4fff6;
+  transform: translateY(-1px);
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.55);
+}
+
+/* active sekce (když si ji budeš napojovat na scroll) */
+.topLinkActive {
+  background: rgba(214, 255, 173, 0.14);
+  border-color: rgba(214, 255, 173, 0.9);
+  color: #e9ffe8;
+  box-shadow: 0 0 0 1px rgba(214, 255, 173, 0.55),
+    0 12px 26px rgba(0, 0, 0, 0.6);
+}
+
+.topIcon {
+  width: 25px;
+  height: auto;
+  flex-shrink: 0;
+  color: var(--brand-tertiary);
+  filter: drop-shadow(0 0 4px rgba(126, 235, 151, 0.4));
+}
+
+.brandText {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  line-height: 1.19;
+  position: relative;
+  top: 2px;
+}
+
+.name {
   font-size: 15px;
   font-weight: 600;
-
-   color: rgba(var(--brand-white-rgb), 0.75);
-  background: transparent;
-
-  transition: 0.25s ease;
+  color: var(--brand-tertiary);
+  filter: drop-shadow(0 0 4px rgba(126, 235, 151, 0.4));
 }
 
-/* hover animace = shodná logika jako pills dole */
-.navCont ul li:hover {
+.role {
+  font-size: 13px;
+  letter-spacing: 0.03em;
+  font-weight: 400;
   color: var(--brand-white);
-  background: rgba(var(--brand-primary-rgb), 0.28);
-  border-color: rgba(var(--brand-primary-rgb), 0.45);
-  transform: translateY(-1px);
-  cursor: pointer;
+  margin-top: 1px;
 }
 
+.burgerMenu {
+  width: 30px;
+  height: 30px;
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 7px;
+  position: relative;
+}
+
+.burgerMenu span {
+   transform-origin: center;
+}
+
+.burgerTop {
+  height: 1px;
+  width: 100%;
+  border: 1px solid var(--brand-tertiary);
+}
+
+.burgerMiddle {
+  height: 1px;
+  width: 100%;
+  border: 1px solid var(--brand-tertiary);
+}
+
+.burgerBottom {
+  height: 1px;
+  width: 100%;
+  border: 1px solid var(--brand-tertiary);
+}
+
+.activateTop {
+  transform: translateY() rotate();  
+}
+
+
+@media (width <= 984px) {
+  .rightBox {
+    display: none;
+  }
+  .leftBox {
+    gap: 14px;
+  }
+
+  .leftBox svg {
+    width: 35px !important;
+  }
+
+  .navCont {
+    height: 70px;
+  }
+
+  .burgerMenu {
+    display: flex;
+  }
+}
+
+@media (width <= 521px) {
+  .brandText {
+    justify-content: center;
+    align-items: center;
+    line-height: 1.4;
+    position: relative;
+    right: 8px;
+  }
+}

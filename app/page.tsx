@@ -14,6 +14,7 @@ import LeadForm from "./components/sections/leadForm/LeadForm";
 import Footer from "./components/sections/footer/Footer";
 import { heroVariants } from "./content/heroVariants";
 import s from "./page.module.css";
+import SideMenu from "./components/nav/SideMenu";
 import TrustBar from "./ui/trustBar/TrustBar";
 import { Home, Lock, ShieldAlert, ShieldCheck } from "lucide-react";
 const SECTION_KEYS = [
@@ -29,6 +30,7 @@ const SECTION_KEYS = [
 
 export default function Page() {
   const [activeSection, setActiveSection] = useState<string>("hero");
+  const [sideMenu, setSideMenu] = useState(false);
 
   // Scroll detection
   useEffect(() => {
@@ -66,28 +68,13 @@ export default function Page() {
 
   return (
     <>
-      <Nav />
+      <Nav setSideMenu={setSideMenu} sideMenu={sideMenu} />
+      <SideMenu sideMenu={sideMenu} />
+   
+   
       <main>
         <section id="hero" data-section-key="hero" className={s.heroCont}>
           <Hero variants={heroVariants} activeSession={activeSection} />
-          {/* <div className={s.serviceStrip}>
-            <div className={s.serviceItem}>
-              <Home className={s.serviceIcon} />
-              Hypotéka & bydlení
-            </div>
-            <div className={s.serviceItem}>
-              <ShieldCheck className={s.serviceIcon} />
-              Zajištění příjmu
-            </div>
-            <div className={s.serviceItem}>
-              <Lock className={s.serviceIcon} />
-              Ochrana majetku
-            </div>
-            <div className={s.serviceItem}>
-              <ShieldAlert className={s.serviceIcon} />
-              Pojištění odpovědnosti
-            </div>
-          </div> */}
         </section>
 
         <section id="about" data-section-key="about">

@@ -55,50 +55,8 @@ const Hero = ({ variants, activeSession }: HeroProps) => {
     <section className={s.heroCont}>
       <div className={s.bgLayer} />
       <div className={s.heroNoise} />
-      <div className={s.topStrip}>
-        <div className={s.leftBox}>
-          <LogoMark />
-          {width > 521 ? (
-            <div className={s.brandText}>
-              <span className={s.name}>David Pokorný</span>
-              <span className={s.role}>Finanční plánování</span>
-            </div>
-          ) : null}
-        </div>
-        {width <= 521 ? (
-          <div className={s.brandText}>
-            <span className={s.name}>David Pokorný</span>
-            <span className={s.role}>Finanční plánování</span>
-          </div>
-        ) : null}
-        <div className={s.rightBox}>
-          <a href="#about" className={s.topLink}>
-            <User2 className={s.topIcon} />
-            <span>Kdo jsem</span>
-          </a>
-          <a href="#help" className={s.topLink}>
-            <HeartHandshake className={s.topIcon} />
-            <span>S čím pomáhám</span>
-          </a>
-          <a href="#process" className={s.topLink}>
-            <Workflow className={s.topIcon} />
-            <span>Jak pracuji</span>
-          </a>
-          <a href="#testimonials" className={s.topLink}>
-            <Quote className={s.topIcon} />
-            <span>Reference</span>
-          </a>
-        </div>
-        <div className={s.burgerMenu}>
-          <span className={s.burgerTop} />
-          <span className={s.burgerMiddle} />
-          <span className={s.burgerBottom} />
-        </div>
-      </div>
-
       <div className={s.heroInner}>
         <div className={s.heroGlass} />
-
         <p className={s.eyebrow}>{content.eyebrow}</p>
 
         <h1 className={s.title}>
@@ -137,9 +95,9 @@ const Hero = ({ variants, activeSession }: HeroProps) => {
             size="md"
             className={s.heroCta}
           />
-          <div className={s.playCont}>
+          {/* <div className={s.playCont}>
             <Play />
-          </div>
+          </div> */}
         </div>
 
         {/* 🔥 NOVÝ BOTTOM STRIP – elegantně posazený na dně hero */}
