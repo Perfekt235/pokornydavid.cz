@@ -1,4 +1,8 @@
-import type { ButtonHTMLAttributes, AnchorHTMLAttributes, ReactNode } from "react";
+import type {
+  ButtonHTMLAttributes,
+  AnchorHTMLAttributes,
+  ReactNode,
+} from "react";
 import Link from "next/link";
 import s from "./button.module.css";
 
@@ -14,7 +18,7 @@ type BaseProps = {
 };
 
 type ButtonAsButton = BaseProps &
-  ButtonHTMLAttributes<HTMLButtonElement> & {
+  Omit<ButtonHTMLAttributes<HTMLButtonElement>, "href"> & {
     href?: undefined;
   };
 
@@ -41,7 +45,7 @@ const Button = ({
     <>
       {loading && <span className={s.loader} />}
       {!loading && iconLeft && <span className={s.iconLeft}>{iconLeft}</span>}
-      <span style={{zIndex: 999}}>{label || children}</span>
+      <span style={{ zIndex: 999 }}>{label || children}</span>
       {!loading && iconRight && <span className={s.iconRight}>{iconRight}</span>}
     </>
   );
@@ -54,16 +58,26 @@ const Button = ({
     ${className}
   `.trim();
 
+  // If href exists → render <Link>
   if (href) {
+    const linkProps = rest as AnchorHTMLAttributes<HTMLAnchorElement>;
+
     return (
-      <Link href={href} className={classNames} {...(rest as any)}>
+      <Link href={href} className={classNames} {...linkProps}>
         {content}
       </Link>
     );
   }
 
+  // Otherwise → button
+  const buttonProps = rest as ButtonHTMLAttributes<HTMLButtonElement>;
+
   return (
-    <button className={classNames} disabled={loading} {...(rest as any)}>
+    <button
+      className={classNames}
+      disabled={loading}
+      {...buttonProps}
+    >
       {content}
     </button>
   );
