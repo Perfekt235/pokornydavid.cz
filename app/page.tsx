@@ -69,7 +69,7 @@ export default function Page() {
   return (
     <>
       <Nav setSideMenu={setSideMenu} sideMenu={sideMenu} />
-      <SideMenu sideMenu={sideMenu} />
+      <SideMenu setSideMenu={setSideMenu} sideMenu={sideMenu} />
    
    
       <main>

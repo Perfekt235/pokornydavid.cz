@@ -105,10 +105,11 @@
   align-items: center;
   gap: 7px;
   position: relative;
+  cursor: pointer;
 }
 
 .burgerMenu span {
-   transform-origin: center;
+  transform-origin: center;
 }
 
 .burgerTop {
@@ -130,14 +131,20 @@
 }
 
 .activateTop {
-  transform: translateY() rotate();  
+  transform: translateY() rotate();
 }
 
-
-@media (width <= 984px) {
+@media (width <= 1223px) {
   .rightBox {
     display: none;
   }
+  .burgerMenu {
+    display: flex;
+  }
+  .navCont {
+    height: 70px;
+  }
+
   .leftBox {
     gap: 14px;
   }
@@ -145,15 +152,8 @@
   .leftBox svg {
     width: 35px !important;
   }
-
-  .navCont {
-    height: 70px;
-  }
-
-  .burgerMenu {
-    display: flex;
-  }
 }
+
 
 @media (width <= 521px) {
   .brandText {

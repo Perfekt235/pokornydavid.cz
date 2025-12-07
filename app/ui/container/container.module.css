@@ -1,7 +1,7 @@
 /* src/app/ui/container/container.module.css */
 
 .container {
-  max-width: 85%;    /* nebo 1024 / 1200 / co používáš */
+  width: 95%;    /* nebo 1024 / 1200 / co používáš */
   margin: 0 auto;
   padding-left: 24px;     /* TADY máš ten default spacing od okrajů */
   padding-right: 24px;

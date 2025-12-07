@@ -1,11 +1,310 @@
 .aboutCont {
-  min-height: 100vh;
   width: 100%;
-  position: sticky;
-  top: 0;
-  background: var(--bg-section-light);
-  z-index: 10;
-  position: sticky; /* nutné pro after overlay */
+  padding: 100px 0;
+  position: relative;
+  background-color: var(--brand-deep-trust);
+}
+
+.mainCont {
+  gap: 90px;
+  align-items: center;
+  width: 100% !important;
+}
+
+/* label "KDO JSEM" + linky okolo */
+.eyebrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 50px;
+
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-weight: 600;
+  font-size: clamp(13px, 1vw, 16px);
+  color: var(--brand-primary-soft);
+
+  text-shadow: 0 0 6px rgba(var(--brand-primary-rgb), 0.9);
+  margin-bottom: 24px;
+}
+
+/* label "KDO JSEM" + linky okolo */
+.eyebrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-weight: 600;
+  font-size: 16px;
+  color: var(--brand-primary-soft);
+
+  text-shadow: 0 0 16px rgba(var(--brand-primary-rgb), 0.9);
+  margin-bottom: 24px;
+}
+
+.eyebrowText {
+  white-space: nowrap;
+}
+
+/* čára + kolečko na VNĚJŠÍM konci */
+.eyebrowLine {
+  flex: 1; /* natáhne se do stran */
+  min-width: 120px; /* aby tam fakt něco bylo */
+  height: 2px;
+  position: relative;
+  background-color: var(--brand-tertiary);
+  filter: drop-shadow(0 0 6px rgba(var(--brand-tertiary-rgb), 0.7));
+}
+
+/* výchozí: kruh na LEVÉM vnějším konci */
+.eyebrowLine::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0; /* ⬅ tady, ne right */
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(var(--brand-primary-rgb), 0.9);
+  background: var(--brand-tertiary);
+  box-shadow: 0 0 10px rgba(var(--brand-primary-rgb), 0.9);
+  transform: translate(-50%, -50%);
+  animation: glow 1.8s ease-in-out infinite alternate;
+}
+
+/* pravá linie má kruh na PRAVÉM vnějším konci */
+.eyebrowLine:last-child::before {
+  left: auto;
+  right: 0;
+  transform: translate(50%, -50%);
+}
+
+.card {
+  position: relative;
+  max-width: 1411px;
+  margin: 0 auto;
+  padding: 56px 64px;
+  border-radius: 36px;
+  border: 1px solid var(--brand-tertiary-tint);
+  overflow: hidden;
+
+  background: radial-gradient(
+      circle at bottom left,
+      rgba(255, 255, 255, 0.06),
+      transparent 55%
+    ),
+    rgba(5, 35, 26, 0.92);
+
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.45),
+    inset 0 0 30px rgba(255, 255, 255, 0.04);
+}
+
+.card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: url("/glass.webp");
+  background-size: cover;
+  background-repeat: no-repeat;
+  mix-blend-mode: overlay;
+  opacity: 0.28;
+}
+
+/* obsah uvnitř karty */
+.contentCont {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  gap: 72px;
+  align-items: center;
+}
+
+.photoCol {
+  flex: 0 0 auto;
+  border-radius: 28px;
+  overflow: hidden;
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.35);
+}
+
+.photo {
+  width: 100%;
+  border-radius: 28px;
+  object-fit: cover;
+}
+
+.gradientSoft {
+  background: var(--text-gradient-hero);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.textCol {
+  flex: 1;
   display: flex;
   flex-direction: column;
+  gap: 22px;
+  max-width: 640px;
+}
+
+.heading {
+  font-weight: 700;
+  color: var(--brand-light);
+  line-height: 1.25;
+  font-size: clamp(22px, 1.9vw, 34px);
+}
+
+.body {
+  color: var(--brand-white);
+  line-height: 1.6;
+  font-size: clamp(15px, 1.1vw, 18px);
+}
+
+.actions {
+  margin-top: 20px;
+  display: flex;
+  gap: 30px;
+  align-items: center;
+}
+
+.aboutCta {
+  width: 146px;
+  padding: 20px 25px !important;
+  text-align: center !important;
+}
+
+/* Video button */
+.videoBtn {
+  all: unset;
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  cursor: pointer;
+  padding: 10px 20px 10px 10px;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.26);
+  border: 1px solid var(--brand-tertiary-tint);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
+  transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.videoBtn:hover {
+  background: rgba(0, 0, 0, 0.4);
+  transform: translateY(-1px);
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.55);
+}
+
+.playCont {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 1px solid var(--brand-tertiary-tint);
+  color: var(--brand-tertiary);
+  position: relative;
+  overflow: visible;
+}
+
+.playCont::before,
+.playCont::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: var(--brand-tertiary);
+  opacity: 0.15;
+  animation: pulse 5.2s ease-out infinite;
+  pointer-events: none;
+}
+
+.playCont::after {
+  animation-delay: 1.3s;
+}
+
+@keyframes glow {
+  from {
+    box-shadow: 0 0 6px rgba(var(--brand-primary-rgb), 0.5);
+  }
+  to {
+    box-shadow: 0 0 40px rgba(var(--brand-primary-rgb), 0.9);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(0);
+    opacity: 0.2;
+  }
+  100% {
+    transform: scale(1.9);
+    opacity: 0;
+  }
+}
+
+.videoLabel {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--brand-tertiary);
+}
+@media (max-width: 1150px) {
+
+  .card {
+    padding: 75px 70px;
+  }
+
+  .actions {
+    margin-top: 46px;
+  }
+
+  .contentCont {
+    flex-direction: column;
+    text-align: center;
+    gap: 90px;
+  }
+
+  .textCol {
+    max-width: 100%;
+    align-items: center;
+  }
+}
+
+@media (max-width: 620px) {
+ .mainCont {
+  padding: 0px !important;
+ }
+}
+@media (max-width: 555px) {
+  .card {
+     padding: 40px 0px 75px 0px;
+  }
+
+  .eyebrowLine {
+    min-width: 67px;
+  }
+  .textCol {
+    padding:  0px 30px;
+  }
+}
+@media (max-width: 450px) {
+  .photoCol {
+    width: 100%;
+    box-shadow: none;
+  }
+
+  .card {
+     padding: 0px 0px 75px 0px;
+  }
+
+}
+
+
+@media (max-width: 900px) {
+
 }

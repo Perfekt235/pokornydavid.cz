@@ -5,7 +5,8 @@ import gsap from "gsap";
 import { useViewport } from "../Providers/ViewportProvider";
 import s from "./css/nav.module.css";
 import LogoMark from "@/app/svgr/LogoMark";
-import { HeartHandshake, Quote, User2, Workflow } from "lucide-react";
+import { HeartHandshake, PhoneCall, Quote, User2, Workflow } from "lucide-react";
+import Button from "@/app/ui/cta/Button";
 
 type NavProps = {
   sideMenu: boolean;
@@ -138,6 +139,13 @@ const Nav = ({ sideMenu, setSideMenu }: NavProps) => {
           <Quote className={s.topIcon} />
           <span>Reference</span>
         </a>
+                  <Button
+            variant="cta"
+            label={"Konzultace zdarma"}
+            href={"/"}
+            size="md"
+            className={s.heroCta}
+          />
       </div>
 
       {/* BURGER */}

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import s from "./css/sideMenu.module.css";
 import gsap from "gsap";
 import { HeartHandshake, Quote, User2, Workflow } from "lucide-react";
@@ -8,9 +8,10 @@ import Button from "@/app/ui/cta/Button";
 
 type SideMenuProps = {
   sideMenu: boolean;
+  setSideMenu: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-const SideMenu = ({ sideMenu }: SideMenuProps) => {
+const SideMenu = ({ sideMenu, setSideMenu }: SideMenuProps) => {
   const contentRef = useRef<HTMLElement | null>(null);
   const firstLayerRef = useRef<HTMLDivElement | null>(null);
   const secondLayerRef = useRef<HTMLDivElement | null>(null);
@@ -98,12 +99,18 @@ const SideMenu = ({ sideMenu }: SideMenuProps) => {
   }, [sideMenu]);
 
   return (
-    <aside className={s.mainCont}>
+    <aside
+      className={s.mainCont}
+      style={{
+        pointerEvents: `${sideMenu ? "all" : "none"}`,
+      }}
+    >
       <nav className={s.content} ref={contentRef}>
         <div className={s.navContainer}>
           <a
             href="#about"
             className={s.navLink}
+            onClick={() => setSideMenu(false)}
             ref={(el) => {
               if (el) linkRefs.current[0] = el;
             }}
@@ -115,6 +122,7 @@ const SideMenu = ({ sideMenu }: SideMenuProps) => {
           <a
             href="#help"
             className={s.navLink}
+            onClick={() => setSideMenu(false)}
             ref={(el) => {
               if (el) linkRefs.current[1] = el;
             }}
@@ -126,6 +134,7 @@ const SideMenu = ({ sideMenu }: SideMenuProps) => {
           <a
             href="#process"
             className={s.navLink}
+            onClick={() => setSideMenu(false)}
             ref={(el) => {
               if (el) linkRefs.current[2] = el;
             }}
@@ -137,6 +146,7 @@ const SideMenu = ({ sideMenu }: SideMenuProps) => {
           <a
             href="#testimonials"
             className={s.navLink}
+            onClick={() => setSideMenu(false)}
             ref={(el) => {
               if (el) linkRefs.current[3] = el;
             }}
