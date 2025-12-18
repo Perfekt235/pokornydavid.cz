@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import { useMemo, useState } from "react";
 import {
@@ -108,9 +108,6 @@ const steps: Step[] = [
   },
 ];
 
-
-
-
 const Process = () => {
   const { openLeadForm } = useLeadFormModal();
   const [activeId, setActiveId] = useState<string>(steps[0].id);
@@ -126,11 +123,8 @@ const Process = () => {
         <div className={s.sectionHeader}>
           <p className={s.eyebrow}>Průběh spolupráce</p>
           <div className={s.headlineWrap}>
-            <h2>Jednoduchý proces, který ladí s vámi</h2>
-            <p>
-              Jasné kroky, žádné zbytečné složitosti. Klikněte na krok vlevo a
-              uvidíte, co přesně vás čeká.
-            </p>
+            <h2>Jednoduchý proces, který dává smysl.</h2>
+            <p>Postupně si projdeme, co řešíme a jaký je další krok.</p>
           </div>
         </div>
 
@@ -189,14 +183,29 @@ const Process = () => {
                   ))}
                 </ul>
 
-                <Button
-                  variant="cta"
-                  className={s.cta}
-                  aria-label="Sjednat konzultaci"
-                  onClick={() => openLeadForm()}
-                >
-                  Sjednat konzultaci
-                </Button>
+                <div className={s.buttonRow}>
+                  <Button
+                    variant="cta"
+                    className={s.cta}
+                    aria-label="Sjednat konzultaci"
+                    onClick={() => openLeadForm()}
+                  >
+                    Sjednat konzultaci
+                  </Button>
+                  <Button
+                    variant="secondary"
+                    className={s.nextBtn}
+                onClick={() => {
+                  const currentIdx = steps.findIndex(
+                    (step) => step.id === activeStep.id
+                  );
+                  const nextIdx = (currentIdx + 1) % steps.length;
+                  setActiveId(steps[nextIdx].id);
+                }}
+              >
+                Další krok →
+              </Button>
+            </div>
               </div>
             </div>
           </div>

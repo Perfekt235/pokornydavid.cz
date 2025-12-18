@@ -251,9 +251,33 @@
   box-shadow: 0 10px 22px rgba(0, 0, 0, 0.06);
 }
 
-.cta {
+.buttonRow {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-top: 12px;
+  flex-wrap: wrap;
+}
+
+.cta,
+.nextBtn {
   width: fit-content;
-  margin-top: 6px;
+}
+
+.nextBtn {
+  background: transparent !important;
+  border: 1px solid rgba(var(--brand-dark-rgb), 0.2) !important;
+  color: rgba(var(--brand-dark-rgb), 0.7) !important;
+  box-shadow: none !important;
+  font-weight: 600 !important;
+  padding: 12px 18px !important;
+}
+
+.nextBtn:hover {
+  background: rgba(var(--brand-primary-soft-rgb), 0.4) !important;
+  border-color: rgba(var(--brand-primary-rgb), 0.45) !important;
+  color: var(--brand-deep-trust) !important;
+  transform: translateY(-1px);
 }
 
 @media (max-width: 1080px) {
