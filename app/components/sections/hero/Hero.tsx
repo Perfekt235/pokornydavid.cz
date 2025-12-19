@@ -53,7 +53,7 @@ const Hero = ({ variants, activeSession }: HeroProps) => {
       target: "#service-financni-plan",
     },
     {
-      label: "Hypotéka a spoření",
+      label: "Investice a spoření",
       icon: <LineChart className={s.serviceIcon} />,
       target: "#service-investice-a-sporeni",
     },
