@@ -13,7 +13,6 @@
   background-repeat: no-repeat;
   background-size: cover;
   z-index: 15;
-  overflow: hidden;
 }
 
 /* PRIMARY GREEN ATMOSPHERE */
@@ -23,7 +22,7 @@
   left: -10%;
   top: 6%;
   width: 62%;
-  height: 100%;
+  height: 60%;
   background: rgba(126, 235, 151, 0.08); /* brand-primary s alfou */
   filter: blur(20px);
   border-radius: 50%;
@@ -48,9 +47,14 @@
   justify-content: space-evenly;
   gap: 15px;
   padding: 0px 20px;
-  background: #0f3a2f;
+  background: radial-gradient(
+      167% 120% at 37% 36%,
+      rgba(var(--brand-tertiary-rgb), 0.08),
+      #0f3a2f 50%
+    ),
+    #0f3a2f;
   box-shadow: inset 0 6px 6px -6px #00000073, inset 0 -6px 13px -6px #00000073,
-    0 -2px 24px #00000073;
+    -1px 3px 7px 1px #00000073;
   width: 100%;
   min-height: 90px;
   z-index: 222222;

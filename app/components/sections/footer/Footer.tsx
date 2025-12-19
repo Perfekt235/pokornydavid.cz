@@ -30,7 +30,7 @@ const Footer = () => {
               iconRight={<ArrowUpRight size={18} />}
               onClick={() => openLeadForm()}
             >
-              Sjednat konzultaci
+              Probrat vaši situaci
             </Button>
           </div>
 
@@ -42,6 +42,23 @@ const Footer = () => {
                 <li><a href="#services">S čím pomáhám</a></li>
                 <li><a href="#process">Jak pracuji</a></li>
                 <li><a href="#faq">Časté dotazy</a></li>
+              </ul>
+            </div>
+
+            <div>
+              <h4>Právní informace</h4>
+              <ul>
+                <li>
+                  <a href="/pravni-informace">Právní informace</a>
+                </li>
+                <li>
+                  <a href="/zasady-zpracovani-osobnich-udaju">
+                    Zásady zpracování osobních údajů
+                  </a>
+                </li>
+                <li>
+                  <a href="/cookies-a-mereni">Cookies &amp; měření</a>
+                </li>
               </ul>
             </div>
 
@@ -71,17 +88,17 @@ const Footer = () => {
             Pokorný
           </p>
           <p>
+            David Pokorný · IČO: XXXXXXXX · Sídlo: Ulice, PSČ Město
+          </p>
+          <p>
+            Vázaný zástupce společnosti SAB servis s.r.o., IČ: 24704008, se
+            sídlem Jungmannova 748/30, 110 00 Praha 1.
+          </p>
+          <p>
             Dotazy k ochraně osobních údajů:{" "}
             <a href="mailto:info@pokornydavid.cz">info@pokornydavid.cz</a>
           </p>
           <p>Obsah webu nepředstavuje investiční doporučení.</p>
-          <div className={s.privacyLinks}>
-            <a href="/zasady-zpracovani-osobnich-udaju">
-              Zásady zpracování osobních údajů
-            </a>
-            <span className={s.privacyDot}>·</span>
-            <a href="/cookies-a-mereni">Cookies &amp; měření</a>
-          </div>
         </div>
 
         <div className={s.bottomRow}>

@@ -1,65 +1,7 @@
-
-
 .TrustBar {
   background-color: var(--bg-section-dark);
 }
 
 .heroCont {
   background-color: var(--brand-deep-trust);
-}
-
-.serviceStrip {
-  display: flex;
-  align-items: center;
-  justify-content: space-evenly;
-  flex-wrap: wrap;
-
-  padding: 0px 20px;
-  background: linear-gradient(
-    0deg,
-    rgba(0, 0, 0, 0.5) 0%,
-    rgba(0, 0, 0, 0.4) 60%,
-    rgba(0, 0, 0, 0.1) 100%
-  );
-  /* border-top: 1px solid var(--brand-tertiary-tint); */
-  box-shadow: 0px -8px 24px #00000073;
-  width: 100%;
-  min-height: 70px;
-  z-index: 222222;
-  backdrop-filter: blur(3px);
-  position: relative;
-  bottom: 70px;
-}
-
-.serviceItem {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 15px;
-  font-weight: 500;
-  color: var(--brand-white);
-  transition: opacity 0.2s ease, transform 0.2s ease;
-  padding: 9px 25px;
-  border: 1px solid var(--brand-tertiary-tint);
-  background: rgba(7, 24, 16, 0.35);
-  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.35);
-  border-radius: 30px;
-  cursor: pointer;
-}
-
-.serviceItem:hover {
-  opacity: 1;
-  transform: translateY(-1px);
-  background: rgba(12, 40, 24, 0.85);
-  border-color: rgba(214, 255, 173, 0.38);
-  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.55);
-}
-
-.serviceIcon {
-  width: 25px;
-  height: auto;
-  color: var(--brand-tertiary);
-  filter: drop-shadow(0 0 4px rgba(126, 235, 151, 0.4));
-  position: relative;
-  bottom: 1px;
 }

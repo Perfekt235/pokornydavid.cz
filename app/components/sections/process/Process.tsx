@@ -187,10 +187,10 @@ const Process = () => {
                   <Button
                     variant="cta"
                     className={s.cta}
-                    aria-label="Sjednat konzultaci"
+                    aria-label="Probrat vaši situaci"
                     onClick={() => openLeadForm()}
                   >
-                    Sjednat konzultaci
+                    Probrat vaši situaci
                   </Button>
                   <Button
                     variant="secondary"

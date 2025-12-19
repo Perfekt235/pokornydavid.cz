@@ -13,7 +13,7 @@ type TextMarqueeProps = {
 const TextMarquee = ({
   items,
   icons = [],
-  speedSec = 26,
+  speedSec = 50,
   className = "",
 }: TextMarqueeProps) => {
   const content = useMemo(() => {

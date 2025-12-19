@@ -68,7 +68,7 @@ const services: Service[] = [
     label: "Investice",
     title: "Investice a spoření",
     description:
-      "Každý velký cíl začíná chytrým rozhodnutím. Pomohu vám investovat tak, aby se z přání stala realita – a z úspor rostoucí jistota.",
+      "Pomohu vám zorientovat se v investování a spoření tak, aby dávaly smysl v rámci vašeho plánu.",
     image: "/investice.png",
     icon: <LineChart size={28} />,
   },
@@ -133,7 +133,7 @@ const Services = () => {
                 className={s.ctaBtn}
                 onClick={() => openLeadForm(service.title)}
               >
-                Sjednat konzultaci
+                Probrat vaši situaci
               </Button>
             </article>
           ))}

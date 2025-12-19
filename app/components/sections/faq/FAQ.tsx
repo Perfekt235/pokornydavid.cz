@@ -27,7 +27,7 @@ const faqs: FaqItem[] = [
   {
     question: "Umíte připravit finanční plán?",
     answer:
-      "Ano. Na základě vašich příjmů, výdajů, rezerv a stávajících smluv připravím srozumitelný plán s prioritami a konkrétními kroky. Vždy tak, aby dával smysl v běžném životě.",
+      "Ano. Na základě vašich příjmů, výdajů, rezerv a stávajících smluv připravím srozumitelný plán s prioritami a konkrétními kroky. Vždy tak, aby dával smysl v běžném životě. Konkrétní návrhy vždy vychází z individuální situace.",
   },
   {
     question: "Jak vybíráte konkrétní řešení?",
@@ -116,7 +116,7 @@ const FAQ = () => {
                 className={s.cta}
                 onClick={() => openLeadForm()}
               >
-                Sjednat konzultaci
+                Probrat vaši situaci
               </Button>
 
               <div className={s.contactList}>

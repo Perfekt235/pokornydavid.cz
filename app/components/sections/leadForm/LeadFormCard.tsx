@@ -43,15 +43,18 @@ const LeadFormCard = ({
 }: LeadFormCardProps) => {
   const isSection = variant === "section";
   const topicOptions = useMemo(() => {
-    if (prefillTopic && !leadFormTopics.includes(prefillTopic as typeof leadFormTopics[number])) {
+    if (
+      prefillTopic &&
+      !leadFormTopics.includes(prefillTopic as (typeof leadFormTopics)[number])
+    ) {
       return [prefillTopic, ...leadFormTopics];
     }
     return [...leadFormTopics];
   }, [prefillTopic]);
 
   const defaultTopic = useMemo(
-    () => prefillTopic ?? topicOptions[0],
-    [prefillTopic, topicOptions],
+    () => prefillTopic ?? "",
+    [prefillTopic]
   );
 
   const [selectedTopic, setSelectedTopic] = useState<string>(defaultTopic);
@@ -112,12 +115,12 @@ const LeadFormCard = ({
     ] as const;
 
     handlers.forEach(([event, handler, capture]) =>
-      window.addEventListener(event, handler, capture),
+      window.addEventListener(event, handler, capture)
     );
 
     return () => {
       handlers.forEach(([event, handler, capture]) =>
-        window.removeEventListener(event, handler, capture),
+        window.removeEventListener(event, handler, capture)
       );
     };
   }, [isOpen]);
@@ -224,9 +227,9 @@ const LeadFormCard = ({
         <p className={s.kicker}>Bez závazku, v klidu</p>
         <h2 className={s.title}>Probereme vaši situaci?</h2>
         <p className={s.subtitle}>
-          Nechte na sebe kontakt a v klidu si projdeme vaši situaci. Bez
-          závazků, bez nátlaku – jen jasnější představa, jak se posunout dál.
-          Ozvu se vám nejpozději do 24 hodin.
+          Nechte na sebe kontakt a v klidu si projdeme vaši situaci. Cílem je
+          získat přehled a domluvit se na dalším kroku. Ozvu se vám nejpozději
+          do 24 hodin.
         </p>
       </div>
 
@@ -320,7 +323,7 @@ const LeadFormCard = ({
               onKeyDown={handleTriggerKey}
               ref={triggerRef}
             >
-              <span>{selectedTopic}</span>
+              <span>{selectedTopic || "Vyberte téma"}</span>
               <span className={s.selectChevron} aria-hidden />
             </button>
             <input type="hidden" name="topic" value={selectedTopic} />
@@ -364,7 +367,7 @@ const LeadFormCard = ({
                       </button>
                     ))}
                   </div>,
-                  document.body,
+                  document.body
                 )
               : null}
             {errors.topic ? (
@@ -381,7 +384,7 @@ const LeadFormCard = ({
           <textarea
             name="note"
             rows={4}
-            placeholder="Stručně napište, co chcete probrat."
+            placeholder="Stačí pár slov, pokud chcete"
             value={note}
             onChange={(e) => {
               setNote(e.target.value);
@@ -403,7 +406,7 @@ const LeadFormCard = ({
             ) : null}
             {status.state === "submitting"
               ? "Odesílám…"
-              : "Sjednat konzultaci"}
+              : "Probrat vaši situaci"}
           </Button>
         </div>
 

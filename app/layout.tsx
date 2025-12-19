@@ -22,6 +22,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${dmSans.className} antialiased`}>
+        {/* <SmoothScroll /> */}
         <ViewportProvider>
           <LeadFormModalProvider>{children}</LeadFormModalProvider>
         </ViewportProvider>

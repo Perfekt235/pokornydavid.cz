@@ -139,7 +139,7 @@ const Nav = ({ sideMenu, setSideMenu }: NavProps) => {
         </a>
         <Button
           variant="cta"
-          label={"Sjednat konzultaci"}
+          label={"Probrat vaši situaci"}
           onClick={() => openLeadForm()}
           size="md"
           className={s.heroCta}

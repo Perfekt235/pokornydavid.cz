@@ -4,6 +4,7 @@ import s from "./about.module.css";
 import Container from "@/app/ui/container/Container";
 import Button from "@/app/ui/cta/Button";
 import { useLeadFormModal } from "../../Providers/LeadFormModalProvider";
+import AboutCredentials from "./AboutCredentials";
 
 type Highlight = {
   title: string;
@@ -32,14 +33,14 @@ const ABOUT_CONTENT = {
     },
     {
       title: "Plán na míru",
-      text: "Každá rada vychází z toho, jak žijete a co chcete mít ve svém životě pod kontrolou.",
+      text: "Každý další krok vychází z toho, jak žijete a co chcete mít ve svém životě pod kontrolou.",
     },
     {
       title: "Dlouhodobá jistota",
       text: "Pomůžu hlídat rizika a budovat rezervy, aby finance fungovaly i v čase.",
     },
   ] satisfies Highlight[],
-  cta: "Sjednat konzultaci",
+  cta: "Probrat vaši situaci",
 };
 
 const About = () => {
@@ -84,7 +85,19 @@ const About = () => {
               </ul>
             </article>
 
-            <article className={`${s.card} ${s.ctaCard}`}>
+          </div>
+
+          <article className={`${s.card} ${s.photoCard}`}>
+            <div className={s.photoFrame} />
+          </article>
+        </div>
+           <AboutCredentials />
+           <article style={{
+            width: "100%",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+           }}>
               <Button
                 className={s.ctaBtn}
                 variant="cta"
@@ -92,13 +105,7 @@ const About = () => {
               >
                 {ABOUT_CONTENT.cta}
               </Button>
-            </article>
-          </div>
-
-          <article className={`${s.card} ${s.photoCard}`}>
-            <div className={s.photoFrame} />
-          </article>
-        </div>
+           </article>
       </Container>
     </section>
   );

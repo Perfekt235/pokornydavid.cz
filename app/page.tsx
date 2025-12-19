@@ -73,7 +73,7 @@ export default function Page() {
 
   useEffect(() => {
     const revealables = Array.from(
-      document.querySelectorAll<HTMLElement>(".reveal"),
+      document.querySelectorAll<HTMLElement>(".reveal")
     );
     const observer = new IntersectionObserver(
       (entries) => {
@@ -87,7 +87,7 @@ export default function Page() {
       {
         rootMargin: "0px 0px -10% 0px",
         threshold: 0.1,
-      },
+      }
     );
 
     revealables.forEach((node) => observer.observe(node));
@@ -98,7 +98,7 @@ export default function Page() {
     <>
       <Nav setSideMenu={setSideMenu} sideMenu={sideMenu} />
       <SideMenu setSideMenu={setSideMenu} sideMenu={sideMenu} />
-   
+
       <main>
         <section id="hero" data-section-key="hero" className={s.heroCont}>
           <Hero variants={heroVariants} activeSession={activeSection} />
@@ -108,9 +108,9 @@ export default function Page() {
           <About />
         </section>
 
-        <section>
+        {/* <section>
           <AboutCredentials />
-        </section>
+        </section> */}
 
         <section id="testimonials" data-section-key="testimonials">
           <Testimonials />
@@ -120,7 +120,7 @@ export default function Page() {
           <Video />
         </section>
 
-                     <TextMarquee
+        <TextMarquee
           items={[
             "Vlastní bydlení",
             "Ochrana majetku",
@@ -141,7 +141,6 @@ export default function Page() {
         <section id="services" data-section-key="services">
           <Services />
         </section>
-
 
         <section id="process" data-section-key="process">
           <Process />

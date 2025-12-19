@@ -154,7 +154,7 @@ const Testimonials = () => {
         <p className={s.eyebrow}>Skutečné příběhy klientů</p>
         <div className={s.grid}>
           <div className={s.card}>
-            <h3 className={s.cardHeading}>Důvěřuje mi přes 200 klientů</h3>
+            <h3 className={s.cardHeading}>Důvěřuje mi více než 200 klientů</h3>
             <p className={s.cardBody}>
               Klienti oceňují přehled, klidný přístup a řešení, která dávají smysl v běžném životě.
             </p>
@@ -171,7 +171,7 @@ const Testimonials = () => {
               className={s.ctaBtn}
               onClick={() => openLeadForm()}
             >
-              Sjednat konzultaci
+              Probrat vaši situaci
             </Button>
           </div>
 
