@@ -152,7 +152,7 @@ const FAQ = () => {
 
                 <Reveal as="div" from="left" delay={0.42}>
                   <MapPin size={18} />
-                  <span>Praha & online</span>
+                  <span>Tovární 1197/42a, 779 00, Olomouc</span>
                 </Reveal>
               </div>
             </div>

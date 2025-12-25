@@ -187,11 +187,11 @@
   width: 52px;
   height: 52px;
   border-radius: 16px;
-  background: rgba(255, 255, 255, 0.22);
+  background: linear-gradient(135deg, #185846f2, #0c2820f2);
   border: 1px solid rgba(255, 255, 255, 0.35);
   display: grid;
   place-items: center;
-  color: var(--brand-deep-trust);
+  color: var(--brand-tertiary);
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.16);
 }
 
