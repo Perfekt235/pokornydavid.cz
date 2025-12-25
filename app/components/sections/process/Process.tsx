@@ -13,6 +13,7 @@ import Container from "@/app/ui/container/Container";
 import Button from "@/app/ui/cta/Button";
 import s from "./process.module.css";
 import { useLeadFormModal } from "../../Providers/LeadFormModalProvider";
+import { Reveal } from "@/app/ui/animations/Reveal";
 
 type Step = {
   id: string;
@@ -119,22 +120,32 @@ const Process = () => {
 
   return (
     <div className={s.processCont}>
-      <Container className={`${s.processInner} reveal`}>
-        <div className={s.sectionHeader}>
-          <p className={s.eyebrow}>Průběh spolupráce</p>
-          <div className={s.headlineWrap}>
-            <h2>Jednoduchý proces, který dává smysl.</h2>
-            <p>Postupně si projdeme, co řešíme a jaký je další krok.</p>
+      <Container className={`${s.processInner}`}>
+        <Reveal as="div" from="bottom">
+          <div className={s.sectionHeader}>
+            <p className={s.eyebrow}>Průběh spolupráce</p>
+            <div className={s.headlineWrap}>
+              <h2>Jednoduchý proces, který dává smysl.</h2>
+              <p>Postupně si projdeme, co řešíme a jaký je další krok.</p>
+            </div>
           </div>
-        </div>
+        </Reveal>
 
         <div className={s.grid}>
           <div className={s.listCol}>
             <ul className={s.stepList}>
               {steps.map((step, idx) => {
                 const isActive = activeStep.id === step.id;
+
                 return (
-                  <li key={step.id}>
+                  <Reveal
+                    key={step.id}
+                    as="li"
+                    from="left"
+                    delay={0.1}
+                    stagger={0.08}
+                    index={idx}
+                  >
                     <button
                       type="button"
                       className={`${s.stepCard} ${isActive ? s.active : ""}`}
@@ -147,7 +158,7 @@ const Process = () => {
                         <p>{step.kicker}</p>
                       </div>
                     </button>
-                  </li>
+                  </Reveal>
                 );
               })}
             </ul>
@@ -168,44 +179,82 @@ const Process = () => {
               </div>
 
               <div className={s.detailBody}>
-                <div className={s.detailEyebrow}>{activeStep.kicker}</div>
-                <h3>{activeStep.title}</h3>
-                <p className={s.detailLead}>{activeStep.description}</p>
+                <Reveal
+                  as="div"
+                  from="left"
+                  className={s.detailEyebrow}
+                  delay={0.05}
+                >
+                  {activeStep.kicker}
+                </Reveal>
+
+                <Reveal as="h3" from="left" delay={0.12}>
+                  {activeStep.title}
+                </Reveal>
+
+                <Reveal
+                  as="p"
+                  from="left"
+                  className={s.detailLead}
+                  delay={0.18}
+                >
+                  {activeStep.description}
+                </Reveal>
 
                 <ul className={s.bullets}>
-                  {activeStep.bullets.map((item) => (
-                    <li key={item}>
+                  {activeStep.bullets.map((item, i) => (
+                    <Reveal
+                      key={item}
+                      as="li"
+                      from="left"
+                      delay={0.26}
+                      stagger={0.06}
+                      index={i}
+                    >
                       <span className={s.checkIcon}>
                         <Check size={18} />
                       </span>
                       <span>{item}</span>
-                    </li>
+                    </Reveal>
                   ))}
                 </ul>
 
                 <div className={s.buttonRow}>
-                  <Button
-                    variant="cta"
-                    className={s.cta}
-                    aria-label="Probrat vaši situaci"
-                    onClick={() => openLeadForm()}
+                  <Reveal
+                    as="div"
+                    from="left"
+                    delay={0.26 + activeStep.bullets.length * 0.06 + 0.08}
                   >
-                    Probrat vaši situaci
-                  </Button>
-                  <Button
-                    variant="secondary"
-                    className={s.nextBtn}
-                onClick={() => {
-                  const currentIdx = steps.findIndex(
-                    (step) => step.id === activeStep.id
-                  );
-                  const nextIdx = (currentIdx + 1) % steps.length;
-                  setActiveId(steps[nextIdx].id);
-                }}
-              >
-                Další krok →
-              </Button>
-            </div>
+                    <Button
+                      variant="cta"
+                      className={s.cta}
+                      aria-label="Probrat vaši situaci"
+                      onClick={() => openLeadForm()}
+                    >
+                      Probrat vaši situaci
+                    </Button>
+                  </Reveal>
+
+                  <Reveal
+                    as="div"
+                    from="left"
+                    delay={0.26 + activeStep.bullets.length * 0.06 + 0.14}
+                  >
+                    <Button
+                      variant="secondary"
+                      className={s.nextBtn}
+                      onClick={() => {
+                        const currentIdx = steps.findIndex(
+                          (step) => step.id === activeStep.id
+                        );
+                        const nextIdx = (currentIdx + 1) % steps.length;
+                        setActiveId(steps[nextIdx].id);
+                      }}
+                    >
+                      Další krok →
+                    </Button>
+                  </Reveal>
+                </div>
               </div>
             </div>
           </div>

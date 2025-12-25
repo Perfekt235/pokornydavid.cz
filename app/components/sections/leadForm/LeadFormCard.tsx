@@ -11,6 +11,7 @@ import {
 import { createPortal } from "react-dom";
 import Button from "@/app/ui/cta/Button";
 import s from "./leadform.module.css";
+import { Reveal } from "@/app/ui/animations/Reveal";
 
 export const leadFormTopics = [
   "Hypotéka & bydlení",
@@ -36,6 +37,18 @@ type StatusState =
   | { state: "success"; message: string }
   | { state: "error"; message: string };
 
+const SectionReveal = ({
+  enabled,
+  children,
+  ...props
+}: {
+  enabled: boolean;
+  children: React.ReactNode;
+} & React.ComponentProps<typeof Reveal>) => {
+  if (!enabled) return <>{children}</>;
+  return <Reveal {...props}>{children}</Reveal>;
+};
+
 const LeadFormCard = ({
   prefillTopic,
   variant = "section",
@@ -52,10 +65,7 @@ const LeadFormCard = ({
     return [...leadFormTopics];
   }, [prefillTopic]);
 
-  const defaultTopic = useMemo(
-    () => prefillTopic ?? "",
-    [prefillTopic]
-  );
+  const defaultTopic = useMemo(() => prefillTopic ?? "", [prefillTopic]);
 
   const [selectedTopic, setSelectedTopic] = useState<string>(defaultTopic);
   const [fullName, setFullName] = useState("");
@@ -223,202 +233,214 @@ const LeadFormCard = ({
         </button>
       ) : null}
 
-      <div className={`${s.formHead} ${isSection ? "reveal" : ""}`}>
-        <p className={s.kicker}>Bez závazku, v klidu</p>
-        <h2 className={s.title}>Probereme vaši situaci?</h2>
-        <p className={s.subtitle}>
-          Nechte na sebe kontakt a v klidu si projdeme vaši situaci. Cílem je
-          získat přehled a domluvit se na dalším kroku. Ozvu se vám nejpozději
-          do 24 hodin.
-        </p>
-      </div>
+      <SectionReveal enabled={isSection} from="bottom">
+        <div className={s.formHead}>
+          <p className={s.kicker}>Bez závazku, v klidu</p>
+          <h2 className={s.title}>Probereme vaši situaci?</h2>
+          <p className={s.subtitle}>
+            Nechte na sebe kontakt a v klidu si projdeme vaši situaci. Cílem je
+            získat přehled a domluvit se na dalším kroku. Ozvu se vám nejpozději
+            do 24 hodin.
+          </p>
+        </div>
+      </SectionReveal>
 
-      <form
-        className={`${s.form} ${isSection ? "reveal" : ""}`.trim()}
-        onSubmit={handleSubmit}
-      >
-        <div className={s.inlineFields}>
-          <label className={s.field}>
-            <span className={s.fieldLabel}>
-              Jméno a příjmení <span className={s.required}>*</span>
-            </span>
-            <input
-              type="text"
-              name="fullName"
-              placeholder="Např. Jana Nováková"
-              autoComplete="name"
-              value={fullName}
-              onChange={(e) => {
-                setFullName(e.target.value);
-                resetStatus();
-              }}
-              className={errors.fullName ? s.fieldError : undefined}
-            />
-            {errors.fullName ? (
-              <span className={s.errorText}>{errors.fullName}</span>
-            ) : null}
-          </label>
-          <label className={s.field}>
-            <span className={s.fieldLabel}>
-              Telefon <span className={s.required}>*</span>
-            </span>
-            <div className={s.phoneGroup}>
-              <span className={s.phonePrefix}>+420</span>
+      <form className={`${s.form}`} onSubmit={handleSubmit}>
+        <SectionReveal enabled={isSection} from="left">
+          <div className={s.inlineFields}>
+            <label className={s.field}>
+              <span className={s.fieldLabel}>
+                Jméno a příjmení <span className={s.required}>*</span>
+              </span>
               <input
-                type="tel"
-                name="phone"
-                inputMode="tel"
-                placeholder="731 830 897"
-                autoComplete="tel"
-                value={phone}
+                type="text"
+                name="fullName"
+                placeholder="Např. Jana Nováková"
+                autoComplete="name"
+                value={fullName}
                 onChange={(e) => {
-                  setPhone(e.target.value);
+                  setFullName(e.target.value);
                   resetStatus();
                 }}
-                className={`${s.phoneInput} ${
-                  errors.phone ? s.fieldError : ""
-                }`}
+                className={errors.fullName ? s.fieldError : undefined}
               />
-            </div>
-            {errors.phone ? (
-              <span className={s.errorText}>{errors.phone}</span>
+              {errors.fullName ? (
+                <span className={s.errorText}>{errors.fullName}</span>
+              ) : null}
+            </label>
+            <label className={s.field}>
+              <span className={s.fieldLabel}>
+                Telefon <span className={s.required}>*</span>
+              </span>
+              <div className={s.phoneGroup}>
+                <span className={s.phonePrefix}>+420</span>
+                <input
+                  type="tel"
+                  name="phone"
+                  inputMode="tel"
+                  placeholder="731 830 897"
+                  autoComplete="tel"
+                  value={phone}
+                  onChange={(e) => {
+                    setPhone(e.target.value);
+                    resetStatus();
+                  }}
+                  className={`${s.phoneInput} ${
+                    errors.phone ? s.fieldError : ""
+                  }`}
+                />
+              </div>
+              {errors.phone ? (
+                <span className={s.errorText}>{errors.phone}</span>
+              ) : null}
+            </label>
+          </div>
+        </SectionReveal>
+
+        <SectionReveal enabled={isSection} from="left">
+          <label className={s.field}>
+            <span className={s.fieldLabel}>
+              E-mail <span className={s.required}>*</span>
+            </span>
+            <input
+              type="email"
+              name="email"
+              autoComplete="email"
+              placeholder="např. jana@seznam.cz"
+              value={email}
+              onChange={(e) => {
+                setEmail(e.target.value);
+                resetStatus();
+              }}
+              className={errors.email ? s.fieldError : undefined}
+            />
+            {errors.email ? (
+              <span className={s.errorText}>{errors.email}</span>
             ) : null}
           </label>
-        </div>
+        </SectionReveal>
 
-        <label className={s.field}>
-          <span className={s.fieldLabel}>
-            E-mail <span className={s.required}>*</span>
-          </span>
-          <input
-            type="email"
-            name="email"
-            autoComplete="email"
-            placeholder="např. jana@seznam.cz"
-            value={email}
-            onChange={(e) => {
-              setEmail(e.target.value);
-              resetStatus();
-            }}
-            className={errors.email ? s.fieldError : undefined}
-          />
-          {errors.email ? (
-            <span className={s.errorText}>{errors.email}</span>
-          ) : null}
-        </label>
+        <SectionReveal enabled={isSection} from="left">
+          <label className={s.field}>
+            <span className={s.fieldLabel}>
+              Téma hovoru <span className={s.required}>*</span>
+            </span>
+            <div className={s.selectWrap}>
+              <button
+                type="button"
+                className={`${s.selectTrigger} ${isOpen ? s.selectOpen : ""} ${
+                  errors.topic ? s.fieldError : ""
+                }`}
+                aria-haspopup="listbox"
+                aria-expanded={isOpen}
+                onClick={toggleMenu}
+                onKeyDown={handleTriggerKey}
+                ref={triggerRef}
+              >
+                <span>{selectedTopic || "Vyberte téma"}</span>
+                <span className={s.selectChevron} aria-hidden />
+              </button>
+              <input type="hidden" name="topic" value={selectedTopic} />
 
-        <label className={s.field}>
-          <span className={s.fieldLabel}>
-            Téma hovoru <span className={s.required}>*</span>
-          </span>
-          <div className={s.selectWrap}>
-            <button
-              type="button"
-              className={`${s.selectTrigger} ${isOpen ? s.selectOpen : ""} ${
-                errors.topic ? s.fieldError : ""
-              }`}
-              aria-haspopup="listbox"
-              aria-expanded={isOpen}
-              onClick={toggleMenu}
-              onKeyDown={handleTriggerKey}
-              ref={triggerRef}
+              {isOpen && menuPos
+                ? createPortal(
+                    <div
+                      className={s.selectMenu}
+                      role="listbox"
+                      aria-label="Téma hovoru"
+                      ref={menuRef}
+                      style={{
+                        position: "fixed",
+                        left: menuPos.left,
+                        top: menuPos.top,
+                        width: menuPos.width,
+                        maxWidth: menuPos.width,
+                        maxHeight: menuPos.maxHeight,
+                        overflowY: "auto",
+                      }}
+                    >
+                      {topicOptions.map((topic) => (
+                        <button
+                          key={topic}
+                          type="button"
+                          role="option"
+                          aria-selected={selectedTopic === topic}
+                          className={`${s.selectItem} ${
+                            selectedTopic === topic ? s.selectItemActive : ""
+                          }`}
+                          onMouseDown={(e) => {
+                            e.preventDefault();
+                            handleSelect(topic);
+                          }}
+                          onClick={() => {
+                            handleSelect(topic);
+                            resetStatus();
+                          }}
+                        >
+                          {topic}
+                        </button>
+                      ))}
+                    </div>,
+                    document.body
+                  )
+                : null}
+              {errors.topic ? (
+                <span className={s.errorText}>{errors.topic}</span>
+              ) : null}
+            </div>
+          </label>
+        </SectionReveal>
+
+        <SectionReveal enabled={isSection} from="left">
+          <label className={s.field}>
+            <div className={s.labelRow}>
+              <span>Poznámka</span>
+              <span className={s.optional}>Nepovinné</span>
+            </div>
+            <textarea
+              name="note"
+              rows={4}
+              placeholder="Stačí pár slov, pokud chcete"
+              value={note}
+              onChange={(e) => {
+                setNote(e.target.value);
+                resetStatus();
+              }}
+            />
+          </label>
+        </SectionReveal>
+
+        <SectionReveal enabled={isSection} from="right">
+          <div className={s.actions}>
+            <Button
+              type="submit"
+              variant="cta"
+              className={s.submitBtn}
+              disabled={status.state === "submitting"}
+              aria-busy={status.state === "submitting"}
             >
-              <span>{selectedTopic || "Vyberte téma"}</span>
-              <span className={s.selectChevron} aria-hidden />
-            </button>
-            <input type="hidden" name="topic" value={selectedTopic} />
-
-            {isOpen && menuPos
-              ? createPortal(
-                  <div
-                    className={s.selectMenu}
-                    role="listbox"
-                    aria-label="Téma hovoru"
-                    ref={menuRef}
-                    style={{
-                      position: "fixed",
-                      left: menuPos.left,
-                      top: menuPos.top,
-                      width: menuPos.width,
-                      maxWidth: menuPos.width,
-                      maxHeight: menuPos.maxHeight,
-                      overflowY: "auto",
-                    }}
-                  >
-                    {topicOptions.map((topic) => (
-                      <button
-                        key={topic}
-                        type="button"
-                        role="option"
-                        aria-selected={selectedTopic === topic}
-                        className={`${s.selectItem} ${
-                          selectedTopic === topic ? s.selectItemActive : ""
-                        }`}
-                        onMouseDown={(e) => {
-                          e.preventDefault();
-                          handleSelect(topic);
-                        }}
-                        onClick={() => {
-                          handleSelect(topic);
-                          resetStatus();
-                        }}
-                      >
-                        {topic}
-                      </button>
-                    ))}
-                  </div>,
-                  document.body
-                )
-              : null}
-            {errors.topic ? (
-              <span className={s.errorText}>{errors.topic}</span>
-            ) : null}
+              {status.state === "submitting" ? (
+                <span className={s.loader} aria-hidden />
+              ) : null}
+              {status.state === "submitting"
+                ? "Odesílám…"
+                : "Odeslat"}
+            </Button>
           </div>
-        </label>
+        </SectionReveal>
+        <SectionReveal enabled={isSection} from="left">
+          <p className={s.ctaNote}>
+            Konzultace je nezávazná a nepředstavuje investiční doporučení.
+          </p>
+        </SectionReveal>
 
-        <label className={s.field}>
-          <div className={s.labelRow}>
-            <span>Poznámka</span>
-            <span className={s.optional}>Nepovinné</span>
-          </div>
-          <textarea
-            name="note"
-            rows={4}
-            placeholder="Stačí pár slov, pokud chcete"
-            value={note}
-            onChange={(e) => {
-              setNote(e.target.value);
-              resetStatus();
-            }}
-          />
-        </label>
-
-        <div className={s.actions}>
-          <Button
-            type="submit"
-            variant="cta"
-            className={s.submitBtn}
-            disabled={status.state === "submitting"}
-            aria-busy={status.state === "submitting"}
-          >
-            {status.state === "submitting" ? (
-              <span className={s.loader} aria-hidden />
-            ) : null}
-            {status.state === "submitting"
-              ? "Odesílám…"
-              : "Probrat vaši situaci"}
-          </Button>
-        </div>
-
-        <p className={s.ctaNote}>
-          Konzultace je nezávazná a nepředstavuje investiční doporučení.
-        </p>
-
-        <p className={s.privacyNote}>
-          Správcem osobních údajů je SAB servis s.r.o. Údaje slouží pouze k
-          domluvě úvodního hovoru. Pokud nevznikne spolupráce, budou do 6 měsíců
-          smazány.
-        </p>
+        <SectionReveal enabled={isSection} from="left" start="top 100%">
+          <p className={s.privacyNote}>
+            Správcem osobních údajů je SAB servis s.r.o. Údaje slouží pouze k
+            domluvě úvodního hovoru. Pokud nevznikne spolupráce, budou do 6
+            měsíců smazány.
+          </p>
+        </SectionReveal>
 
         {status.state === "success" ? (
           <p className={s.statusSuccess}>{status.message}</p>

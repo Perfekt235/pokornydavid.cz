@@ -1,10 +1,10 @@
 "use client";
 
+import React from "react";
 import s from "./about.module.css";
 import Container from "@/app/ui/container/Container";
-import Button from "@/app/ui/cta/Button";
-import { useLeadFormModal } from "../../Providers/LeadFormModalProvider";
 import AboutCredentials from "./AboutCredentials";
+import { Reveal } from "@/app/ui/animations/Reveal";
 
 type Highlight = {
   title: string;
@@ -14,11 +14,11 @@ type Highlight = {
 const ABOUT_CONTENT = {
   eyebrow: "Kdo jsem",
   heading: {
-    line1: "Pomáhám lidem mít ve financích jasno",
-    accent: "Bez stresu a nátlaku.",
+    line1: "Cílem není dokonalý plán na papíře, ale systém, který funguje v reálném životě – dnes, za pět let i ve chvíli, kdy se situace změní.",
+    accent: "Srozumitelně a férově.",
   },
   lead: [
-    "Jmenuji se David Pokorný a pomáhám lidem dát jejich finance do pořádku tak, aby fungovaly v běžném životě a přinášely dlouhodobý klid.",
+    "Jmenuji se David Pokorný a pomáhám lidem dát finance do pořádku tak, aby fungovaly v běžném životě a přinášely dlouhodobý klid.",
     "Bez složitých termínů, bez tlaku na produkt – jen srozumitelný plán, který dává smysl v praxi.",
   ],
   body: [
@@ -44,68 +44,65 @@ const ABOUT_CONTENT = {
 };
 
 const About = () => {
-  const { openLeadForm } = useLeadFormModal();
-
   return (
     <section className={s.section}>
-      <Container className={`${s.inner} reveal`}>
+      <Container className={s.inner}>
+        <Reveal as="div" from="left" className={s.headingCont}>
+          <p className={s.eyebrow}>{ABOUT_CONTENT.eyebrow}</p>
+          <h3>
+            <span className={s.gradientSoft}>
+              {ABOUT_CONTENT.heading.accent}
+            </span>
+          </h3>
+          <p className={s.descHeading}>{ABOUT_CONTENT.heading.line1}</p>
+        </Reveal>
         <div className={s.grid}>
           <div className={s.leftCol}>
-            <article className={`${s.card} ${s.textCard}`}>
-              <p className={s.eyebrow}>{ABOUT_CONTENT.eyebrow}</p>
-
-              <h3 className={s.heading}>
-                {ABOUT_CONTENT.heading.line1}
-                <br />
-                <span className={s.gradientSoft}>
-                  {ABOUT_CONTENT.heading.accent}
-                </span>
-              </h3>
-
-              <p className={`${s.body} ${s.bodyLead}`}>
-                {ABOUT_CONTENT.lead[0]} {ABOUT_CONTENT.lead[1]}
-              </p>
-
-              {ABOUT_CONTENT.body.map((p, i) => (
-                <p key={i} className={s.body}>
-                  {p}
+            <Reveal as="div" from="bottom" className={s.leftColInner}>
+              <article className={`${s.card} ${s.textCard}`}>
+                <p className={`${s.body} ${s.bodyLead}`}>
+                  {ABOUT_CONTENT.lead[0]} {ABOUT_CONTENT.lead[1]}
                 </p>
-              ))}
 
-              <ul className={s.highlights}>
-                {ABOUT_CONTENT.highlights.map((h, i) => (
-                  <li key={i}>
-                    <span className={s.dot} aria-hidden />
-                    <div>
-                      <strong>{h.title}</strong>
-                      <p>{h.text}</p>
-                    </div>
-                  </li>
+                {ABOUT_CONTENT.body.map((p, i) => (
+                  <p key={i} className={s.body}>
+                    {p}
+                  </p>
                 ))}
-              </ul>
-            </article>
 
+                <ul className={s.highlights}>
+                  {ABOUT_CONTENT.highlights.map((h, i) => (
+                    <Reveal
+                      key={`${h.title}-${i}`}
+                      from="left"
+                      delay={i * 0.06}
+                    >
+                      <li className={s.highlightItem}>
+                        <span className={s.dot} aria-hidden />
+                        <div>
+                          <strong>{h.title}</strong>
+                          <p>{h.text}</p>
+                        </div>
+                      </li>
+                    </Reveal>
+                  ))}
+                </ul>
+              </article>
+            </Reveal>
           </div>
 
-          <article className={`${s.card} ${s.photoCard}`}>
-            <div className={s.photoFrame} />
-          </article>
+          <Reveal from="bottom" delay={0.2}>
+            <article className={`${s.card} ${s.photoCard}`}>
+              <div className={s.photoFrame} />
+            </article>
+          </Reveal>
         </div>
-           <AboutCredentials />
-           <article style={{
-            width: "100%",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-           }}>
-              <Button
-                className={s.ctaBtn}
-                variant="cta"
-                onClick={() => openLeadForm()}
-              >
-                {ABOUT_CONTENT.cta}
-              </Button>
-           </article>
+
+        <Reveal from="bottom" delay={0.1}>
+          <div>
+            <AboutCredentials />
+          </div>
+        </Reveal>
       </Container>
     </section>
   );

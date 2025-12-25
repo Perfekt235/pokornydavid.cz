@@ -12,6 +12,7 @@ import Container from "@/app/ui/container/Container";
 import Button from "@/app/ui/cta/Button";
 import s from "./faq.module.css";
 import { useLeadFormModal } from "../../Providers/LeadFormModalProvider";
+import { Reveal } from "@/app/ui/animations/Reveal";
 
 type FaqItem = {
   question: string;
@@ -54,18 +55,22 @@ const FAQ = () => {
   return (
     <section className={s.faqCont} id="faq">
       <div className={s.bgPattern} aria-hidden />
-      <Container className={`${s.inner} reveal`}>
+
+      <Container className={s.inner}>
         <div className={s.header}>
-          <p className={s.eyebrow}>Jasně a stručně</p>
+          <Reveal as="p" from="left" className={s.eyebrow} delay={0.05}>
+            Jasně a stručně
+          </Reveal>
+
           <div>
-            <h2>
-              Odpovědi na{" "}
-              <span className={s.highlight}>vaše</span> otázky
-            </h2>
-            <p>
+            <Reveal as="h2" from="left" delay={0.12}>
+              Odpovědi na <span className={s.highlight}>vaše</span> otázky
+            </Reveal>
+
+            <Reveal as="p" from="left" delay={0.18}>
               Co vás nejčastěji zajímá před začátkem spolupráce. Klikněte a
               otevřete detail.
-            </p>
+            </Reveal>
           </div>
         </div>
 
@@ -73,10 +78,16 @@ const FAQ = () => {
           <div className={s.accordion}>
             {faqs.map((item, idx) => {
               const isOpen = openIndex === idx;
+
               return (
-                <div
+                <Reveal
                   key={item.question}
+                  as="div"
+                  from="left"
                   className={`${s.item} ${isOpen ? s.open : ""}`}
+                  delay={0.22}
+                  stagger={0.06}
+                  index={idx}
                 >
                   <button
                     type="button"
@@ -90,53 +101,62 @@ const FAQ = () => {
                       size={20}
                     />
                   </button>
+
                   {isOpen && (
-                    <div className={s.panel}>
+                    <Reveal as="div" from="left" className={s.panel} delay={0.08}>
                       <p>{item.answer}</p>
-                    </div>
+                    </Reveal>
                   )}
-                </div>
+                </Reveal>
               );
             })}
           </div>
 
-          <aside className={s.contactCard}>
+          <Reveal as="aside" from="left" className={s.contactCard} delay={0.22}>
             <div className={s.contactOverlay} aria-hidden />
+
             <div className={s.contactContent}>
-              <div className={s.iconBadge}>
+              <Reveal as="div" from="left" className={s.iconBadge} delay={0.06}>
                 <MessageCircle />
-              </div>
-              <h3>Máte dotaz? Rád vám pomohu</h3>
-              <p>
-                Napište nebo zavolejte — domluvíme si konzultaci a probereme,
-                co je pro vaši situaci nejlepší.
-              </p>
-              <Button
-                variant="cta"
-                className={s.cta}
-                onClick={() => openLeadForm()}
-              >
-                Probrat vaši situaci
-              </Button>
+              </Reveal>
+
+              <Reveal as="h3" from="left" delay={0.12}>
+                Máte dotaz? Rád vám pomohu
+              </Reveal>
+
+              <Reveal as="p" from="left" delay={0.18}>
+                Napište nebo zavolejte — domluvíme si konzultaci a probereme, co
+                je pro vaši situaci nejlepší.
+              </Reveal>
+
+              <Reveal as="div" from="left" delay={0.24}>
+                <Button
+                  variant="cta"
+                  className={s.cta}
+                  onClick={() => openLeadForm()}
+                >
+                  Probrat vaši situaci
+                </Button>
+              </Reveal>
 
               <div className={s.contactList}>
-                <div>
+                <Reveal as="div" from="left" delay={0.30}>
                   <Phone size={18} />
                   <a href="tel:+420731830897">+420 731 830 897</a>
-                </div>
-                <div>
+                </Reveal>
+
+                <Reveal as="div" from="left" delay={0.36}>
                   <Mail size={18} />
-                  <a href="mailto:info@pokornydavid.cz">
-                    info@pokornydavid.cz
-                  </a>
-                </div>
-                <div>
+                  <a href="mailto:info@pokornydavid.cz">info@pokornydavid.cz</a>
+                </Reveal>
+
+                <Reveal as="div" from="left" delay={0.42}>
                   <MapPin size={18} />
                   <span>Praha & online</span>
-                </div>
+                </Reveal>
               </div>
             </div>
-          </aside>
+          </Reveal>
         </div>
       </Container>
     </section>

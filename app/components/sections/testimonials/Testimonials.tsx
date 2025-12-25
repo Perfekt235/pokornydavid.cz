@@ -3,9 +3,20 @@
 import s from "./testimonials.module.css";
 import Container from "@/app/ui/container/Container";
 import Button from "@/app/ui/cta/Button";
-import { Star } from "lucide-react";
+import {
+  Star,
+  Wallet,
+  ShieldCheck,
+  Home,
+  LineChart,
+  PiggyBank,
+  Shield,
+  LucideIcon,
+} from "lucide-react";
 import { useEffect, useState } from "react";
 import { useLeadFormModal } from "../../Providers/LeadFormModalProvider";
+import { Reveal } from "@/app/ui/animations/Reveal";
+import { Marquee } from "@/components/ui/marquee";
 
 type Testimonial = {
   quote: string;
@@ -65,16 +76,15 @@ const trustTags = [
   { label: "Dlouhodobá podpora", count: 18 },
 ];
 
-const tagsTop = trustTags.slice(0, 3);
-const tagsBottom = trustTags.slice(3);
+type Topic = { label: string; icon?: LucideIcon };
 
-const topics = [
-  "Finanční plán",
-  "Pojištění",
-  "Hypotéka",
-  "Investice",
-  "Rezervy",
-  "Penzijní plán",
+const topics: Topic[] = [
+  { label: "Finanční plán", icon: Wallet },
+  { label: "Pojištění", icon: ShieldCheck },
+  { label: "Hypotéka", icon: Home },
+  { label: "Investice", icon: LineChart },
+  { label: "Rezervy", icon: PiggyBank },
+  { label: "Penzijní plán", icon: Shield },
 ];
 
 const useMediaQuery = (query: string) => {
@@ -92,125 +102,126 @@ const useMediaQuery = (query: string) => {
   return matches;
 };
 
-const renderTagTrack = (
-  items: typeof trustTags,
-  reverse?: boolean,
-  paused?: boolean
-) => (
-  <div className={s.tagRow}>
-    <div
-      className={`${s.tagTrack} ${reverse ? s.tagTrackReverse : ""} ${
-        paused ? s.paused : ""
-      }`.trim()}
-    >
-      {[...items, ...items].map((tag, idx) => (
-        <div className={s.tag} key={`${tag.label}-${idx}`}>
-          <span className={s.tagDot} aria-hidden />
-          <span>{tag.label}</span>
-          <span className={s.tagCount}>{tag.count}×</span>
-        </div>
-      ))}
+const QuoteCard = ({ quote, name }: Testimonial) => (
+  <article className={s.quoteCard}>
+    <div className={s.quoteMeta}>
+      <span className={s.avatar}>{name.charAt(0)}</span>
+      <div className={s.person}>
+        <span className={s.name}>{name}</span>
+      </div>
     </div>
+    <p className={s.quoteText}>{quote}</p>
+  </article>
+);
+
+type TagProps = {
+  label: string;
+  count?: number;
+  showCount?: boolean;
+  icon?: LucideIcon;
+};
+
+const Tag = ({ label, count, showCount = true, icon: Icon }: TagProps) => (
+  <div className={s.tag}>
+    {Icon ? (
+      <Icon size={16} className={s.tagIcon} aria-hidden />
+    ) : (
+      <span className={s.tagDot} aria-hidden />
+    )}
+    <span>{label}</span>
+    {showCount && typeof count === "number" ? (
+      <span className={s.tagCount}>{count}×</span>
+    ) : null}
   </div>
 );
 
-const renderCards = (
-  items: Testimonial[],
-  reverse?: boolean,
-  paused?: boolean
-) => {
-  const doubled = [...items, ...items];
-  return (
-    <div
-      className={`${s.track} ${reverse ? s.trackReverse : ""} ${
-        paused ? s.paused : ""
-      }`.trim()}
-    >
-      {doubled.map((item, idx) => (
-        <article className={s.quoteCard} key={`${item.name}-${idx}`}>
-          <p className={s.quoteText}>{item.quote}</p>
-          <div className={s.quoteMeta}>
-            <span className={s.avatar}>{item.name.charAt(0)}</span>
-            <div className={s.person}>
-              <span className={s.name}>{item.name}</span>
-              <span className={s.role}>{item.role}</span>
-            </div>
-          </div>
-        </article>
-      ))}
-    </div>
-  );
-};
-
 const Testimonials = () => {
-  const [pauseTracks, setPauseTracks] = useState(false);
-  const [pauseTags, setPauseTags] = useState(false);
   const isMobile = useMediaQuery("(max-width: 1100px)");
   const { openLeadForm } = useLeadFormModal();
 
   return (
     <section className={s.section}>
-      <Container className={`${s.inner} reveal`}>
-        <p className={s.eyebrow}>Skutečné příběhy klientů</p>
-        <div className={s.grid}>
-          <div className={s.card}>
-            <h3 className={s.cardHeading}>Důvěřuje mi více než 200 klientů</h3>
-            <p className={s.cardBody}>
-              Klienti oceňují přehled, klidný přístup a řešení, která dávají smysl v běžném životě.
-            </p>
-            <p className={s.topicLabel}>Co řešíme nejčastěji</p>
-            <div className={s.topicChips}>
-              {topics.map((t) => (
-                <span className={s.topicChip} key={t}>
-                  {t}
-                </span>
-              ))}
-            </div>
-            <Button
-              variant="cta"
-              className={s.ctaBtn}
-              onClick={() => openLeadForm()}
-            >
-              Probrat vaši situaci
-            </Button>
-          </div>
+      <Container className={s.inner}>
+        <div className={s.headingWrapper}>
+          <Reveal as="p" from="left" className={s.eyebrow}>
+            Skutečné příběhy
+          </Reveal>
+          <Reveal as="h2" from="left" className={s.gradientSoft}>
+            Jak spolupráci vnímají klienti
+          </Reveal>
+          <Reveal as="p" from="left" className={s.sectionDescription}>
+            Reálné zkušenosti lidí, kteří řešili stejné otázky jako vy. Co
+            fungovalo, co ne – a jaký měli pocit ze spolupráce.
+          </Reveal>
+        </div>
 
+        <div className={s.flex}>
+          {/* LEFT CONTENT */}
+          <Reveal as="div" from="bottom" className={s.card}>
+            <Reveal as="h3" from="left" className={s.cardHeading}>
+              Důvěřuje mi více než 200 klientů
+            </Reveal>
+
+            <Reveal as="p" from="left" className={s.cardBody}>
+              Klienti oceňují přehled, klidný přístup a řešení, která dávají
+              smysl v běžném životě.
+            </Reveal>
+
+            <Reveal as="div" from="left" className={s.buttonWrapper}>
+              <Button
+                variant="cta"
+                className={s.ctaBtn}
+                onClick={() => openLeadForm()}
+              >
+                Probrat vaši situaci
+              </Button>
+            </Reveal>
+          </Reveal>
+
+          {/* MARQUEE – DESKTOP */}
           {!isMobile && (
-            <div
+            <Reveal
+              as="div"
+              from="bottom"
               className={s.marqueeShell}
               aria-hidden
-              onMouseEnter={() => setPauseTracks(true)}
-              onMouseLeave={() => setPauseTracks(false)}
-              onTouchStart={() => setPauseTracks(true)}
-              onTouchEnd={() => setPauseTracks(false)}
-              onTouchCancel={() => setPauseTracks(false)}
             >
               <div className={s.column}>
-                {renderCards(leftColumn, false, pauseTracks)}
+                <Marquee vertical pauseOnHover repeat={4}>
+                  {leftColumn.map((t) => (
+                    <QuoteCard key={t.name} {...t} />
+                  ))}
+                </Marquee>
               </div>
+
               <div className={s.column}>
-                {renderCards(rightColumn, true, pauseTracks)}
+                <Marquee vertical reverse pauseOnHover repeat={4}>
+                  {rightColumn.map((t) => (
+                    <QuoteCard key={t.name} {...t} />
+                  ))}
+                </Marquee>
               </div>
-            </div>
+            </Reveal>
           )}
 
+          {/* MARQUEE – MOBILE */}
           {isMobile && (
-            <div
-              className={s.mobileColumn}
+            <Reveal
+              as="div"
+              from="bottom"
+              className={s.marqueeShell}
               aria-hidden
-              onMouseEnter={() => setPauseTracks(true)}
-              onMouseLeave={() => setPauseTracks(false)}
-              onTouchStart={() => setPauseTracks(true)}
-              onTouchEnd={() => setPauseTracks(false)}
-              onTouchCancel={() => setPauseTracks(false)}
             >
-              <div className={s.column}>
-                {renderCards(allTestimonials, false, pauseTracks)}
-              </div>
-            </div>
+              <Marquee pauseOnHover repeat={4}>
+                {allTestimonials.map((t) => (
+                  <QuoteCard key={t.name} {...t} />
+                ))}
+              </Marquee>
+            </Reveal>
           )}
 
-          <div className={s.sideStack}>
+          {/* SIDE STACK */}
+          {/* <div className={s.sideStack}>
             <div className={s.ratingCard}>
               <p className={s.ratingValue}>4.90</p>
               <div className={s.stars}>
@@ -220,24 +231,10 @@ const Testimonials = () => {
               </div>
               <p className={s.ratingMeta}>121 hodnocení a stále přibývají</p>
             </div>
-
-            <div className={s.pillCard}>
-              <div className={s.pillTitle}>Co klienti zmiňují nejčastěji</div>
-              <div
-                className={s.tagViewport}
-                onMouseEnter={() => setPauseTags(true)}
-                onMouseLeave={() => setPauseTags(false)}
-                onTouchStart={() => setPauseTags(true)}
-                onTouchEnd={() => setPauseTags(false)}
-                onTouchCancel={() => setPauseTags(false)}
-              >
-                {renderTagTrack(tagsTop, true, pauseTags)}
-                {renderTagTrack(tagsBottom, false, pauseTags)}
-              </div>
-            </div>
-          </div>
+          </div> */}
         </div>
 
+        {/* STATS */}
         <div className={s.statsBar}>
           <div className={s.stat}>
             <div className={s.statValue}>5+</div>
@@ -254,6 +251,28 @@ const Testimonials = () => {
           <div className={s.stat}>
             <div className={s.statValue}>96%</div>
             <div className={s.statLabel}>pokračuje ve spolupráci</div>
+          </div>
+        </div>
+
+        <div className={s.topicContainer}>
+          <Reveal as="p" from="left" className={s.topicLabel}>
+            Co nejčastěji řešíme:
+          </Reveal>
+
+          {/* TOPIC PILLS (now using Tag) */}
+          <div className={s.topicChips}>
+            {topics.map((t, i) => (
+              <Reveal
+                key={t.label}
+                as="div"
+                from="bottom"
+                className={s.topicChip}
+                stagger={0.08}
+                index={i}
+              >
+                <Tag label={t.label} showCount={false} icon={t.icon} />
+              </Reveal>
+            ))}
           </div>
         </div>
       </Container>

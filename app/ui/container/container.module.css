@@ -3,7 +3,7 @@
 .container {
   width: 90%;    /* nebo 1024 / 1200 / co používáš */
   margin: 0 auto;
-  padding: 100px 0px;
+  padding: 50px 0 50px 0;
   position: relative;
   z-index: 5;
 }

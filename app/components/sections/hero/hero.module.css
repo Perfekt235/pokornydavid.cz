@@ -42,56 +42,130 @@
 /* GLOBAL TONAL OVERLAY + SPOTLIGHT NA OBLIČEJ */
 
 .serviceStrip {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: space-evenly;
-  gap: 15px;
-  padding: 0px 20px;
+  padding: 12px 22px;
   background: radial-gradient(
-      167% 120% at 37% 36%,
+      167% 120% at 90% 18%,
       rgba(var(--brand-tertiary-rgb), 0.08),
       #0f3a2f 50%
     ),
     #0f3a2f;
-  box-shadow: inset 0 6px 6px -6px #00000073, inset 0 -6px 13px -6px #00000073,
-    -1px 3px 7px 1px #00000073;
+  box-shadow: inset 0 8px 12px -10px #000000a8,
+    inset 0 -8px 12px -10px #0000008a, 0px 10px 24px -16px #0000008a;
+  border-bottom: 1px solid #d6ffad2e;
+  border-top: 1px solid #d6ffad2e;
+
   width: 100%;
   min-height: 90px;
   z-index: 222222;
+  overflow: hidden;
+}
+
+.serviceStrip::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("/noise.webp");
+  opacity: 0.08;
+  mix-blend-mode: soft-light;
+  pointer-events: none;
+}
+
+.serviceStripInner {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
 }
 
 .serviceItem {
+  position: relative;
   display: flex;
   align-items: center;
   gap: 8px;
   font-size: 15px;
   font-weight: 500;
-  color: var(--brand-white);
+  color: rgba(236, 248, 239, 0.92);
   text-decoration: none;
-  transition: opacity 0.2s ease, transform 0.2s ease;
-  padding: 8px 18px;
-  border: 1px solid var(--brand-tertiary-tint);
-  background: rgba(7, 24, 16, 0.35);
-  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.35);
+  letter-spacing: 0.01em;
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease,
+    color 0.2s ease, background 0.2s ease;
+  padding: 10px 20px;
+  border: 1px solid rgba(214, 255, 173, 0.32);
+ background: linear-gradient(
+    135deg,
+    rgba(24, 88, 70, 0.95),
+    rgba(12, 40, 32, 0.95)
+  );
+ box-shadow: 0 14px 28px -12px rgba(0, 0, 0, 0.55),
+    0 0 16px rgba(var(--brand-tertiary-rgb), 0.15);
   border-radius: 30px;
-  cursor: pointer;
+  pointer-events: none;
+  min-width: 172px;
+  justify-content: center;
+  overflow: hidden;
 }
 
-.serviceItem:hover {
+.serviceItem::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at 20% 20%,
+    rgba(214, 255, 173, 0.14),
+    transparent 48%
+  );
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.serviceItem:hover::after {
   opacity: 1;
-  transform: translateY(-1px);
-  background: rgba(12, 40, 24, 0.85);
-  border-color: rgba(214, 255, 173, 0.38);
-  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.55);
 }
 
 .serviceIcon {
   width: 25px;
   height: auto;
   color: var(--brand-tertiary);
-  filter: drop-shadow(0 0 4px rgba(126, 235, 151, 0.4));
+  filter: drop-shadow(0 0 3px rgba(126, 235, 151, 0.22));
   position: relative;
   bottom: 1px;
+}
+
+.serviceWrap {
+  display: flex;
+  align-items: center;
+}
+
+.sep {
+  position: relative;
+  height: 1px;
+  width: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(214, 255, 173, 0.28),
+    transparent
+  );
+  opacity: 0.5;
+}
+
+.sep::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(214, 255, 173, 0.38);
+  box-shadow: 0 0 10px rgba(214, 255, 173, 0.28);
 }
 
 .heroGlass {
@@ -135,15 +209,13 @@
   flex-direction: column;
   justify-content: center;
   gap: 20px;
-  background: linear-gradient(
-    122deg,
-    #0f3a2f 22%,
-    #0f3a2f 45%,
-    #0f3a2f52 80%,
-    #0f3a2fb3 89%
+    background: linear-gradient(
+    135deg,
+    rgba(24, 88, 70, 0.95),
+    rgba(12, 40, 32, 0.95)
   );
   padding: 90px 50px 50px 90px;
-  box-shadow: inset -4px 0px 14px 0px #0000006c, 2px 0 20px 8px #0000006c;
+  box-shadow: inset -14px 0px 20px -10px #0000006c, -3px 0 9px 7px #0000006c;
   color: var(--brand-white);
 }
 
@@ -163,7 +235,7 @@
 .title {
   display: flex;
   flex-direction: column;
-  font-size: clamp(50px, 4.2vw, 90px);
+  font-size: clamp(43px, 4.2vw, 90px);
   line-height: 1.12; /* 1.08–1.14 sweet spot */
   font-weight: 700;
   letter-spacing: -0.5px; /* micro-kerning pro premium vibe */

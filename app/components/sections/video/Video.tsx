@@ -6,6 +6,8 @@ import Container from "@/app/ui/container/Container";
 import Button from "@/app/ui/cta/Button";
 import { Play } from "lucide-react";
 import { useLeadFormModal } from "../../Providers/LeadFormModalProvider";
+import { Ripple } from "@/components/ui/ripple";
+import { Reveal } from "@/app/ui/animations/Reveal";
 
 const VIDEO_SRC = "/video_h264.mp4";
 const VIDEO_POSTER = "/nahled-video.webp";
@@ -26,7 +28,31 @@ const Video = () => {
   };
 
   useEffect(() => {
-    const mq = window.matchMedia("(max-width: 640px)");
+    if (!isOpen) return;
+
+    const scrollY = window.scrollY;
+
+    // lock body scroll
+    document.body.style.position = "fixed";
+    document.body.style.top = `-${scrollY}px`;
+    document.body.style.left = "0";
+    document.body.style.right = "0";
+    document.body.style.width = "100%";
+
+    return () => {
+      // unlock body scroll
+      document.body.style.position = "";
+      document.body.style.top = "";
+      document.body.style.left = "";
+      document.body.style.right = "";
+      document.body.style.width = "";
+
+      window.scrollTo(0, scrollY);
+    };
+  }, [isOpen]);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 820px)");
     const update = () => setIsMobile(mq.matches);
     update();
     mq.addEventListener("change", update);
@@ -89,39 +115,73 @@ const Video = () => {
 
   return (
     <section className={s.videoSection}>
-      <Container className={`${s.inner} reveal`}>
-        <div className={s.headingBlock}>
-          <p className={s.eyebrow}>O SPOLUPRÁCI</p>
-          <h3 className={s.heading}>Jak spolupráce probíhá v praxi</h3>
-        </div>
+      <Container className={`${s.inner}`}>
+        <div className={s.layout}>
+          <div className={s.copyCol}>
+            <Reveal from="left">
+              <div className={`${s.headingBlock}`}>
+                <p className={s.eyebrow}>O SPOLUPRÁCI</p>
+                <h3 className={s.gradientSoft}>Jak spolupráce probíhá v praxi</h3>
+              </div>
+            </Reveal>
 
-        <div className={s.videoCard} style={videoStyle}>
-          <button
-            type="button"
-            className={s.playButton}
-            onClick={openVideo}
-            aria-label="Přehrát video"
-          >
-            <div className={s.playCircle}>
-              <Play />
+            <Reveal from="left">
+              <p className={`${s.lede}`}>
+                Krátká ukázka celého procesu — od prvního kontaktu až po
+                konkrétní výstup.
+              </p>
+            </Reveal>
+          </div>
+
+          <Reveal from="fade">
+            <div onClick={openVideo} className={`${s.visualCol}`}>
+              <div className={s.videoFrame}>
+                <span className={s.videoGlow} aria-hidden />
+                <div className={s.videoCard} style={videoStyle}>
+                  <div className={s.cornerBadge}>
+                    <p className={s.videoNote}>
+                      Nejde o investiční doporučení. Konkrétní doporučení až po
+                      poznání vaší situace.
+                    </p>
+                  </div>
+                  <button
+                    type="button"
+                    className={s.playButton}
+                    onClick={openVideo}
+                    aria-label="Přehrát video"
+                  >
+                    <Ripple />
+                  </button>
+                </div>
+              </div>
             </div>
-          </button>
+          </Reveal>
         </div>
-
-        <p className={s.videoNote}>
-          David Pokorný — vázaný zástupce SAB servis s.r.o. Nejde o investiční
-          doporučení. Konkrétní doporučení až po poznání vaší situace.
-        </p>
 
         <div className={s.ctaRow}>
-          <p className={s.ctaLead}>Chcete zjistit, co by dávalo smysl u vás?</p>
-          <Button
-            variant="cta"
-            className={s.cta}
-            onClick={() => openLeadForm()}
-          >
-            Probrat vaši situaci
-          </Button>
+          <Reveal from="bottom">
+            <p className={`${s.ctaLead}`}>
+              Co by dávalo smysl u vás?
+            </p>
+          </Reveal>
+          <Reveal from="bottom" className={s.gradientSoft}>
+           Vyplňte krátký formulář
+          </Reveal>
+          <Reveal from="bottom">
+            <p className={s.ctaDescription}>
+              Vyberte si oblast hovoru a já se vám do
+              24 hodin telefonicky ozvu.
+            </p>
+          </Reveal>
+          <Reveal from="bottom">
+            <Button
+              variant="cta"
+              className={`${s.cta}`}
+              onClick={() => openLeadForm()}
+            >
+              Probrat vaši situaci
+            </Button>
+          </Reveal>
         </div>
       </Container>
 

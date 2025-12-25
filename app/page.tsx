@@ -10,17 +10,15 @@ import Process from "./components/sections/process/Process";
 import Testimonials from "./components/sections/testimonials/Testimonials";
 import Video from "./components/sections/video/Video";
 import FAQ from "./components/sections/faq/FAQ";
-import FastGuide from "./components/sections/fastGuide/FastGuide";
 import LeadForm from "./components/sections/leadForm/LeadForm";
-import AboutCredentials from "./components/sections/about/AboutCredentials";
 import Footer from "./components/sections/footer/Footer";
 import { heroVariants } from "./content/heroVariants";
 import s from "./page.module.css";
 import SideMenu from "./components/nav/SideMenu";
-import TrustBar from "./ui/trustBar/TrustBar";
 import TextMarquee from "./ui/animations/TextMarquee";
 import marqueeStyles from "./ui/animations/textMarquee.module.css";
 import LogoMark from "./svgr/LogoMark";
+import { GoalsVelocityMarquee } from "./ui/animations/GoalsVelocityMarquee";
 const SECTION_KEYS = [
   "hero",
   "about",
@@ -100,47 +98,45 @@ export default function Page() {
       <SideMenu setSideMenu={setSideMenu} sideMenu={sideMenu} />
 
       <main>
-        <section id="hero" data-section-key="hero" className={s.heroCont}>
+        <section id="hero" data-section-key="hero" className={s.sticky}>
           <Hero variants={heroVariants} activeSession={activeSection} />
         </section>
 
-        <section id="about" data-section-key="about">
-          <About />
-        </section>
-
-        {/* <section>
-          <AboutCredentials />
-        </section> */}
-
-        <section id="testimonials" data-section-key="testimonials">
-          <Testimonials />
-        </section>
-
-        <section id="video" data-section-key="video">
-          <Video />
-        </section>
-
-        <TextMarquee
+        {/* <TextMarquee
           items={[
             "Vlastní bydlení",
-            "Ochrana majetku",
-            "Zajištění příjmu",
-            "Pojištění odpovědnosti",
+            "Finanční rezerva",
+            "Klidný důchod",
             "Studium dětí",
+            "Zajištěný příjem",
+            "Ochrana majetku",
+            "Rodinné jistoty",
+            "Plán na míru",
           ]}
           icons={Array.from({ length: 5 }).map((_, idx) => (
             <LogoMark
               key={`logo-${idx}`}
               style={{ width: "48px", height: "48px" }}
             />
-          ))}
-          speedSec={64}
-          className={marqueeStyles.marqueeWrap}
-        />
+            ))}
+            speedSec={64}
+            className={marqueeStyles.marqueeWrap}
+            /> */}
+        <section id="about" data-section-key="about">
+          <About />
+        </section>
+
+        <section id="video" data-section-key="video">
+          <Video />
+        </section>
+        <section id="testimonials" data-section-key="testimonials">
+          <Testimonials />
+        </section>
 
         <section id="services" data-section-key="services">
           <Services />
         </section>
+        <GoalsVelocityMarquee />
 
         <section id="process" data-section-key="process">
           <Process />

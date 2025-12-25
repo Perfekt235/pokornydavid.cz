@@ -14,6 +14,7 @@ import Container from "@/app/ui/container/Container";
 import Button from "@/app/ui/cta/Button";
 import s from "./services.module.css";
 import { useLeadFormModal } from "../../Providers/LeadFormModalProvider";
+import { Reveal } from "@/app/ui/animations/Reveal";
 
 type Service = {
   label: string;
@@ -96,38 +97,51 @@ const Services = () => {
   return (
     <section className={s.servicesCont} id="services">
       <Container fullHeight>
-        <div className={s.spotlight} aria-hidden />
-        <div className={`${s.header} reveal`}>
-          <p className={s.eyebrow}>Praktické služby</p>
-          <h2>Když chcete mít ve financích jasno</h2>
-          <p className={s.sub}>
+        <div className={`${s.header}`}>
+          <Reveal as="p" from="bottom" className={s.eyebrow}>
+            Praktické služby
+          </Reveal>
+          <Reveal as="h2" from="bottom">
+            Když chcete mít ve financích jasno
+          </Reveal>
+          <Reveal as="p" from="bottom" className={s.sub}>
             Vyberte si téma, které chcete řešit. Společně si pak projdeme
             možnosti a navrhneme další postup.
-          </p>
+          </Reveal>
         </div>
 
         <div className={s.grid}>
-          {services.map((service) => (
-            <article
-              id={`service-${slugify(service.title)}`}
+          {services.map((service, i) => (
+            <Reveal
               key={service.title}
-              className={`${s.card} reveal ${s.cardReveal}`}
+              as="article"
+              from="bottom"
+              className={`${s.card} ${s.cardReveal}`}
+              index={i}
+              id={`service-${slugify(service.title)}`}
+              duration={0.3}
             >
               <div
                 className={s.figure}
                 aria-hidden
                 style={{
-                  backgroundImage: `linear-gradient(140deg, rgba(0, 0, 0, 0.32), rgba(8, 24, 19, 0.24)), url(${service.image})`,
+                  backgroundImage: `linear-gradient(
+          140deg,
+          rgba(0, 0, 0, 0.32),
+          rgba(8, 24, 19, 0.24)
+        ), url(${service.image})`,
                   backgroundPosition: "center center",
                 }}
               >
                 <span className={s.figureBadge}>{service.icon}</span>
               </div>
+
               <div className={s.text}>
                 <span className={s.label}>{service.label}</span>
                 <h3>{service.title}</h3>
                 <p>{service.description}</p>
               </div>
+
               <Button
                 variant="cta"
                 className={s.ctaBtn}
@@ -135,7 +149,7 @@ const Services = () => {
               >
                 Probrat vaši situaci
               </Button>
-            </article>
+            </Reveal>
           ))}
         </div>
 
