@@ -53,10 +53,11 @@ export function ScrollVelocityContainer({
     stiffness: 300,
   });
 
-  const directionSignal = useTransform(smoothVelocity, (v) => {
-    if (Math.abs(v) < DIRECTION_THRESHOLD) return 0;
-    return v < 0 ? -1 : 1;
-  });
+const directionSignal = useTransform(smoothVelocity, (v): number => {
+  if (Math.abs(v) < DIRECTION_THRESHOLD) return 0;
+  return v < 0 ? -1 : 1;
+});
+
 
   return (
     <ScrollVelocityContext.Provider value={directionSignal}>
