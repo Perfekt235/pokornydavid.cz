@@ -9,13 +9,52 @@
   display: flex;
 }
 
+.statusToast {
+  position: fixed;
+  left: 50%;
+  bottom: 24px;
+  transform: translate(-50%, 120%);
+  opacity: 0;
+  padding: 14px 18px;
+  border-radius: 14px;
+  font-size: 14px;
+  line-height: 1.4;
+  max-width: 472px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.3s ease;
+  z-index: 9999;
+  pointer-events: none;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.statusToastVisible {
+  transform: translate(-50%, 0);
+  opacity: 1;
+}
+
+.statusToastSuccess {
+  background-image: var(--btn-cta-gradient);
+  color: var(---brand-dark);
+  font-weight: 600;
+}
+
+.statusToastError {
+  background: linear-gradient(180deg, #7a1f1f, #551515);
+  color: #ffecec;
+  font-weight: 600;
+}
 
 .img {
   background: url("/leadForm.webp") center/cover no-repeat;
   z-index: 0;
   height: 100%;
   width: 100%;
-      background-position: 0px;
+  background-position: 0px;
 }
 
 .scrim {
@@ -355,8 +394,8 @@
   overflow-y: auto;
 
   /* 👇 SKRYTÍ SCROLLBARU */
-  scrollbar-width: none;          /* Firefox */
-  -ms-overflow-style: none;       /* Edge legacy */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* Edge legacy */
 }
 
 .selectMenu::-webkit-scrollbar {
@@ -414,10 +453,16 @@
   color: rgba(255, 153, 153, 0.95);
 }
 
+.loadingCont {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .loader {
   display: inline-block;
-  width: 14px;
-  height: 14px;
+  width: 25px;
+  height: 25px;
   border: 2px solid rgba(255, 255, 255, 0.4);
   border-top-color: rgba(255, 255, 255, 0.9);
   border-radius: 50%;
@@ -440,6 +485,7 @@
   justify-content: center;
   font-weight: 800 !important;
   max-width: 160px;
+  box-shadow: none !important;
 }
 
 .ctaNote {
@@ -478,8 +524,7 @@
   .inlineFields {
     grid-template-columns: 1fr;
   }
-  .img
-   {
+  .img {
     display: none;
   }
 

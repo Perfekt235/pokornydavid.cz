@@ -6,7 +6,7 @@ import Container from "@/app/ui/container/Container";
 import Button from "@/app/ui/cta/Button";
 import { Play } from "lucide-react";
 import { useLeadFormModal } from "../../Providers/LeadFormModalProvider";
-import { Ripple } from "@/components/ui/ripple";
+import { Ripple } from "@/magic/ui/ripple";
 import { Reveal } from "@/app/ui/animations/Reveal";
 
 const VIDEO_SRC = "/video_h264.mp4";

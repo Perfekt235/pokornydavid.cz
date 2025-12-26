@@ -85,6 +85,10 @@
   font-size: clamp(26px, 2.6vw, 34px);
   line-height: 1.25;
   margin: 0 0 12px;
+      background: var(--text-gradient-hero);
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
 }
 
 .cardBody {

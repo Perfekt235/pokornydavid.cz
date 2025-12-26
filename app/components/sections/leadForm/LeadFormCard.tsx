@@ -12,6 +12,7 @@ import { createPortal } from "react-dom";
 import Button from "@/app/ui/cta/Button";
 import s from "./leadform.module.css";
 import { Reveal } from "@/app/ui/animations/Reveal";
+import { StatusToast } from "./StatusToast";
 
 export const leadFormTopics = [
   "Hypotéka & bydlení",
@@ -150,6 +151,17 @@ const LeadFormCard = ({
     setIsOpen(false);
   };
 
+  const formatPhone = (input: string) => {
+    const digits = input.replace(/\D/g, "").slice(0, 9);
+    const parts = [
+      digits.slice(0, 3),
+      digits.slice(3, 6),
+      digits.slice(6, 9),
+    ].filter(Boolean);
+
+    return parts.join(" ").trim();
+  };
+
   const handleTriggerKey = (event: KeyboardEvent<HTMLButtonElement>) => {
     if (event.key === " " || event.key === "Enter") {
       event.preventDefault();
@@ -158,6 +170,15 @@ const LeadFormCard = ({
     if (event.key === "Escape") {
       setIsOpen(false);
     }
+  };
+
+  const resetForm = () => {
+    setSelectedTopic(defaultTopic);
+    setFullName("");
+    setEmail("");
+    setPhone("");
+    setNote("");
+    setErrors({});
   };
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
@@ -203,6 +224,7 @@ const LeadFormCard = ({
           message:
             "Odeslání se nepovedlo. Zkuste to prosím znovu, nebo mě kontaktujte telefonicky.",
         });
+        resetForm();
         return;
       }
 
@@ -211,6 +233,7 @@ const LeadFormCard = ({
         message:
           "Na vaši e-mailovou adresu bylo posláno potvrzení o přijetí údajů.",
       });
+      resetForm();
     }, 900);
   };
 
@@ -240,8 +263,7 @@ const LeadFormCard = ({
           <p className={s.kicker}>Bez závazku, v klidu</p>
           <h2 className={s.title}>Probereme vaši situaci</h2>
           <p className={s.subtitle}>
-            Domluvíme další
-            krok. Ozvu se do 24 hodin.
+            Domluvíme další krok. Ozvu se do 24 hodin.
           </p>
         </div>
       </SectionReveal>
@@ -278,12 +300,12 @@ const LeadFormCard = ({
                 <input
                   type="tel"
                   name="phone"
-                  inputMode="tel"
+                  inputMode="numeric"
                   placeholder="731 830 897"
                   autoComplete="tel"
                   value={phone}
                   onChange={(e) => {
-                    setPhone(e.target.value);
+                    setPhone(formatPhone(e.target.value));
                     resetStatus();
                   }}
                   className={`${s.phoneInput} ${
@@ -420,11 +442,13 @@ const LeadFormCard = ({
               disabled={status.state === "submitting"}
               aria-busy={status.state === "submitting"}
             >
-              {status.state === "submitting" ? (
-                <span className={s.loader} aria-hidden />
-              ) : null}
               {status.state === "submitting" ? "Odesílám…" : "Odeslat"}
             </Button>
+            <div className={s.loadingCont}>
+                {status.state === "submitting" ? (
+                <span className={s.loader} aria-hidden />
+              ) : null}
+            </div>
           </div>
         </SectionReveal>
         <SectionReveal once={true} enabled={isSection} from="left">
@@ -433,7 +457,12 @@ const LeadFormCard = ({
           </p>
         </SectionReveal>
 
-        <SectionReveal once={true} enabled={isSection} from="left" start="top 100%">
+        <SectionReveal
+          once={true}
+          enabled={isSection}
+          from="left"
+          start="top 100%"
+        >
           <p className={s.privacyNote}>
             Správcem osobních údajů je SAB servis s.r.o. Údaje slouží pouze k
             domluvě úvodního hovoru. Pokud nevznikne spolupráce, budou do 6
@@ -442,10 +471,19 @@ const LeadFormCard = ({
         </SectionReveal>
 
         {status.state === "success" ? (
-          <p className={s.statusSuccess}>{status.message}</p>
+          <StatusToast
+            state="success"
+            message={status.message}
+            onHide={() => setStatus({ state: "idle" })}
+          />
         ) : null}
+
         {status.state === "error" && status.message ? (
-          <p className={s.statusError}>{status.message}</p>
+          <StatusToast
+            state="error"
+            message={status.message}
+            onHide={() => setStatus({ state: "idle" })}
+          />
         ) : null}
       </form>
     </div>

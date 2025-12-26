@@ -35,6 +35,8 @@ type RevealProps<T extends ElementType = "div"> = {
   index?: number;
   stagger?: number;
 
+  debug?: boolean; // 🔹 DEBUG MODE
+
   className?: string;
 } & Omit<ComponentPropsWithoutRef<T>, "ref" | "children" | "className">;
 
@@ -43,13 +45,14 @@ export function Reveal<T extends ElementType = "div">({
   children,
   from = "bottom",
   delay = 0,
-  duration = 0.9,
-  once = false,
+  duration = 0.5,
+  once = true,
   disabled = false,
-  start = "top 90%",
+  start = "top 85%",
   offset = 120,
   index,
   stagger,
+  debug = false,
   className,
   ...rest
 }: RevealProps<T>) {
@@ -89,7 +92,7 @@ export function Reveal<T extends ElementType = "div">({
         : { x: offset };
 
     const ctx = gsap.context(() => {
-      // 🔹 výchozí stav (mimo viewport)
+      // výchozí stav
       gsap.set(el, { opacity: 0, ...fromVars });
 
       const tl = gsap.timeline({ paused: true });
@@ -107,6 +110,7 @@ export function Reveal<T extends ElementType = "div">({
       const trigger = ScrollTrigger.create({
         trigger: el,
         start,
+        markers: debug, // 🔹 DEBUG MARKERS
         onEnter: () => tl.play(),
         onEnterBack: () => tl.play(),
         onLeave: () => tl.reverse(),
@@ -130,6 +134,7 @@ export function Reveal<T extends ElementType = "div">({
     disabled,
     start,
     offset,
+    debug,
   ]);
 
   // render-prop

@@ -16,7 +16,7 @@ import {
 import { useEffect, useState } from "react";
 import { useLeadFormModal } from "../../Providers/LeadFormModalProvider";
 import { Reveal } from "@/app/ui/animations/Reveal";
-import { Marquee } from "@/components/ui/marquee";
+import { Marquee } from "@/magic/ui/marquee";
 
 type Testimonial = {
   quote: string;
@@ -219,19 +219,6 @@ const Testimonials = () => {
               </Marquee>
             </Reveal>
           )}
-
-          {/* SIDE STACK */}
-          {/* <div className={s.sideStack}>
-            <div className={s.ratingCard}>
-              <p className={s.ratingValue}>4.90</p>
-              <div className={s.stars}>
-                {Array.from({ length: 5 }).map((_, i) => (
-                  <Star key={i} size={18} fill="#f5c644" color="#f5c644" />
-                ))}
-              </div>
-              <p className={s.ratingMeta}>121 hodnocení a stále přibývají</p>
-            </div>
-          </div> */}
         </div>
 
         {/* STATS */}

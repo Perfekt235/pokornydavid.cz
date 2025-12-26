@@ -1,7 +1,7 @@
 import {
   ScrollVelocityContainer,
   ScrollVelocityRow,
-} from "@/components/ui/scroll-based-velocity";
+} from "@/magic/ui/scroll-based-velocity";
 import LogoMark from "@/app/svgr/LogoMark";
 
 const TOP_ITEMS = [
@@ -56,20 +56,6 @@ export function GoalsVelocityMarquee() {
             </span>
           ))}
         </ScrollVelocityRow>
-
-        {/* <ScrollVelocityRow
-          baseVelocity={1}
-          direction={-1}
-          separator={<LogoMark />}
-          itemGapPx={64}
-          className="mt-6 opacity-80"
-        >
-          {BOTTOM_ITEMS.map((item) => (
-            <span key={item} className="whitespace-nowrap">
-              {item}
-            </span>
-          ))}
-        </ScrollVelocityRow> */}
       </ScrollVelocityContainer>
 
       {/* gradient masky na okrajích */}
