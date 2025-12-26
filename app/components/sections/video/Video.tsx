@@ -135,7 +135,7 @@ const Video = () => {
             </Reveal>
           </div>
 
-          <Reveal from="top">
+          <Reveal from="bottom">
             <div onClick={openVideo} className={`${s.visualCol}`}>
               <div className={s.videoFrame}>
                 <span className={s.videoGlow} aria-hidden />

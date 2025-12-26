@@ -97,12 +97,12 @@
     color 0.2s ease, background 0.2s ease;
   padding: 10px 20px;
   border: 1px solid rgba(214, 255, 173, 0.32);
- background: linear-gradient(
+  background: linear-gradient(
     135deg,
     rgba(24, 88, 70, 0.95),
     rgba(12, 40, 32, 0.95)
   );
- box-shadow: 0 14px 28px -12px rgba(0, 0, 0, 0.55),
+  box-shadow: 0 14px 28px -12px rgba(0, 0, 0, 0.55),
     0 0 16px rgba(var(--brand-tertiary-rgb), 0.15);
   border-radius: 30px;
   pointer-events: none;
@@ -209,7 +209,7 @@
   flex-direction: column;
   justify-content: center;
   gap: 20px;
-    background: linear-gradient(
+  background: linear-gradient(
     135deg,
     rgba(24, 88, 70, 0.95),
     rgba(12, 40, 32, 0.95)
@@ -439,6 +439,9 @@
   }
   .heroInner {
     padding-top: 70px;
+
+    border-bottom: 1px solid #d6ffad2e;
+    box-shadow: none;
   }
 }
 

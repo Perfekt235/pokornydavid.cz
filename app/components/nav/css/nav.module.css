@@ -21,6 +21,8 @@
   transition: all 0.8s ease;
 
   border: 1px solid #d6ffad2e;
+  border-left: none;
+  border-right: none;
 }
 
 .leftBox {

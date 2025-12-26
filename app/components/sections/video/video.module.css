@@ -365,6 +365,7 @@
 .overlayInner {
   position: relative;
   width: min(90vw, 960px);
+  max-height: 90vh;
   aspect-ratio: 16 / 9;
   background: #000;
   border-radius: 18px;
@@ -372,16 +373,22 @@
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
   pointer-events: auto;
   z-index: 1;
-  padding: 50px 0px;
+
+  /* DŮLEŽITÉ: žádný padding sem */
+  padding: 0;
 }
 
 .overlayVideo {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   border: 0;
+
+  /* bez ořezu */
   object-fit: contain;
+  object-position: center;
   background: #000;
-  object-position: top center; /* nebo center, bottom, 50% 20%, atd. */
 }
 
 .overlayClose {

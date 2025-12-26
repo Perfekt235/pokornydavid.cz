@@ -90,7 +90,7 @@ const services: Service[] = [
     title: "Reality (prodej nemovitosti)",
     description:
       "Když plánujete prodej nemovitosti, propojíme vás se zkušeným makléřem a pohlídáme, aby celý krok dával smysl v rámci vašeho finančního plánu.",
-    image: "/plan.png",
+    image: "/reality.png",
     icon: <Building2 size={28} />,
   },
   {
@@ -98,7 +98,7 @@ const services: Service[] = [
     title: "Energie a úspory",
     description:
       "Energie jsou dnes výrazná položka rodinného rozpočtu. Projdeme nastavení a se specialistou najdeme prostor pro úspory – vždy s ohledem na váš celkový plán.",
-    image: "/plan.png",
+    image: "/energie.png",
     icon: <Zap size={28} />,
   },
 ];

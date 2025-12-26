@@ -235,7 +235,7 @@ const LeadFormCard = ({
         </button>
       ) : null}
 
-      <SectionReveal enabled={isSection} from="left">
+      <SectionReveal once={true} enabled={isSection} from="left">
         <div className={s.formHead}>
           <p className={s.kicker}>Bez závazku, v klidu</p>
           <h2 className={s.title}>Probereme vaši situaci</h2>
@@ -247,7 +247,7 @@ const LeadFormCard = ({
       </SectionReveal>
 
       <form className={`${s.form}`} onSubmit={handleSubmit}>
-        <SectionReveal enabled={isSection} from="left">
+        <SectionReveal once={true} enabled={isSection} from="left">
           <div className={s.inlineFields}>
             <label className={s.field}>
               <span className={s.fieldLabel}>
@@ -298,7 +298,7 @@ const LeadFormCard = ({
           </div>
         </SectionReveal>
 
-        <SectionReveal enabled={isSection} from="left">
+        <SectionReveal once={true} enabled={isSection} from="left">
           <label className={s.field}>
             <span className={s.fieldLabel}>
               E-mail <span className={s.required}>*</span>
@@ -321,7 +321,7 @@ const LeadFormCard = ({
           </label>
         </SectionReveal>
 
-        <SectionReveal enabled={isSection} from="left">
+        <SectionReveal once={true} enabled={isSection} from="left">
           <label className={s.field}>
             <span className={s.fieldLabel}>
               Téma hovoru <span className={s.required}>*</span>
@@ -392,7 +392,7 @@ const LeadFormCard = ({
           </label>
         </SectionReveal>
 
-        <SectionReveal enabled={isSection} from="left">
+        <SectionReveal once={true} enabled={isSection} from="left">
           <label className={s.field}>
             <div className={s.labelRow}>
               <span>Poznámka</span>
@@ -411,7 +411,7 @@ const LeadFormCard = ({
           </label>
         </SectionReveal>
 
-        <SectionReveal enabled={isSection} from="left">
+        <SectionReveal once={true} enabled={isSection} from="left">
           <div className={s.actions}>
             <Button
               type="submit"
@@ -427,13 +427,13 @@ const LeadFormCard = ({
             </Button>
           </div>
         </SectionReveal>
-        <SectionReveal enabled={isSection} from="left">
+        <SectionReveal once={true} enabled={isSection} from="left">
           <p className={s.ctaNote}>
             Konzultace je nezávazná a nepředstavuje investiční doporučení.
           </p>
         </SectionReveal>
 
-        <SectionReveal enabled={isSection} from="left" start="top 100%">
+        <SectionReveal once={true} enabled={isSection} from="left" start="top 100%">
           <p className={s.privacyNote}>
             Správcem osobních údajů je SAB servis s.r.o. Údaje slouží pouze k
             domluvě úvodního hovoru. Pokud nevznikne spolupráce, budou do 6
