@@ -1,4 +1,4 @@
-import type { TweenVars } from "gsap";
+import type { TweenVars } from "./Reveal";
 
 export type RevealMode = "once" | "toggle" | "play";
 
