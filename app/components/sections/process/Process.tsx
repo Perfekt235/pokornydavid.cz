@@ -125,7 +125,7 @@ const Process = () => {
               <p>Postupně si projdeme, co řešíme a jaký je další krok.</p>
             </div>
           </div>
-        </Reveal>
+      
 
         <div className={s.grid}>
           <div className={s.listCol}>
@@ -141,6 +141,7 @@ const Process = () => {
                     delay={0.1}
                     stagger={0.08}
                     index={idx}
+                    disabled
                   >
                     <button
                       type="button"
@@ -162,18 +163,17 @@ const Process = () => {
 
           <div className={s.detailCol}>
             <div className={s.detailCard}>
-             
-                <div
-                  className={s.detailMedia}
-                  style={{
-                    backgroundImage: `linear-gradient(150deg, rgba(12, 42, 34, 0.65), rgba(12, 42, 34, 0.15)), url(${activeStep.image})`,
-                  }}
-                  role="presentation"
-                >
-                  {activeStep.badge && (
-                    <span className={s.badge}>{activeStep.badge}</span>
-                  )}
-                </div>
+              <div
+                className={s.detailMedia}
+                style={{
+                  backgroundImage: `linear-gradient(150deg, rgba(12, 42, 34, 0.65), rgba(12, 42, 34, 0.15)), url(${activeStep.image})`,
+                }}
+                role="presentation"
+              >
+                {activeStep.badge && (
+                  <span className={s.badge}>{activeStep.badge}</span>
+                )}
+              </div>
 
               <div className={s.detailBody}>
                 <Reveal
@@ -181,11 +181,12 @@ const Process = () => {
                   from="left"
                   className={s.detailEyebrow}
                   delay={0.05}
+                  disabled
                 >
                   {activeStep.kicker}
                 </Reveal>
 
-                <Reveal as="h3" from="left" delay={0.12}>
+                <Reveal as="h3" from="left" delay={0.12} disabled>
                   {activeStep.title}
                 </Reveal>
 
@@ -194,6 +195,7 @@ const Process = () => {
                   from="left"
                   className={s.detailLead}
                   delay={0.18}
+                  disabled
                 >
                   {activeStep.description}
                 </Reveal>
@@ -207,6 +209,7 @@ const Process = () => {
                       delay={0.26}
                       stagger={0.06}
                       index={i}
+                      disabled
                     >
                       <span className={s.checkIcon}>
                         <Check size={18} />
@@ -221,6 +224,7 @@ const Process = () => {
                     as="div"
                     from="left"
                     delay={0.26 + activeStep.bullets.length * 0.06 + 0.08}
+                    disabled
                   >
                     <Button
                       variant="cta"
@@ -236,6 +240,7 @@ const Process = () => {
                     as="div"
                     from="left"
                     delay={0.26 + activeStep.bullets.length * 0.06 + 0.14}
+                    disabled
                   >
                     <Button
                       variant="secondary"
@@ -256,6 +261,7 @@ const Process = () => {
             </div>
           </div>
         </div>
+          </Reveal>
       </Container>
     </div>
   );

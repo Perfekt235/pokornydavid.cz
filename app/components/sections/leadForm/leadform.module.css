@@ -269,12 +269,6 @@
   font-size: 15px;
 }
 
-.phoneGroup {
-  display: grid;
-  grid-template-columns: 78px 1fr;
-  align-items: center;
-  gap: 8px;
-}
 
 .phonePrefix {
   display: inline-flex;

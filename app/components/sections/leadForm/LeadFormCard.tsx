@@ -158,14 +158,67 @@ const LeadFormCard = ({
   };
 
   const formatPhone = (input: string) => {
-    const digits = input.replace(/\D/g, "").slice(0, 9);
-    const parts = [
-      digits.slice(0, 3),
-      digits.slice(3, 6),
-      digits.slice(6, 9),
-    ].filter(Boolean);
+    const trimmed = input.trim();
+    const hasPlus = trimmed.startsWith("+");
+    const hasDoubleZero = trimmed.startsWith("00");
 
-    return parts.join(" ").trim();
+    let digits = trimmed.replace(/\D/g, "");
+    if (hasDoubleZero && digits.length >= 2) {
+      digits = digits.slice(2);
+    }
+
+    const parts: string[] = [];
+    for (let i = 0; i < digits.length; i += 3) {
+      parts.push(digits.slice(i, i + 3));
+    }
+
+    if (parts.length === 0) {
+      return hasPlus || hasDoubleZero ? "+" : "";
+    }
+
+    if (hasPlus || hasDoubleZero) {
+      parts[0] = `+${parts[0]}`;
+    }
+
+    return parts.join(" ").trim().slice(0, 24);
+  };
+
+  const normalizePhone = (
+    raw: string
+  ): {
+    country: "420" | "421";
+    national: string;
+    e164: string;
+  } | null => {
+    const trimmed = raw.trim();
+    const hasDoubleZero = trimmed.startsWith("00");
+
+    let digits = trimmed.replace(/\D/g, "");
+    if (hasDoubleZero && digits.length >= 2) {
+      digits = digits.slice(2);
+    }
+
+    if (digits.startsWith("420")) {
+      const national = digits.slice(3);
+      if (national.length === 9) {
+        return { country: "420", national, e164: `+420${national}` };
+      }
+      return null;
+    }
+
+    if (digits.startsWith("421")) {
+      const national = digits.slice(3);
+      if (national.length === 9) {
+        return { country: "421", national, e164: `+421${national}` };
+      }
+      return null;
+    }
+
+    if (digits.length === 9) {
+      return { country: "420", national: digits, e164: `+420${digits}` };
+    }
+
+    return null;
   };
 
   const handleTriggerKey = (event: KeyboardEvent<HTMLButtonElement>) => {
@@ -203,9 +256,10 @@ const LeadFormCard = ({
       nextErrors.email = "E-mail není ve správném tvaru.";
     }
 
-    const phoneDigits = phone.replace(/\D/g, "");
-    if (phoneDigits.length !== 9) {
-      nextErrors.phone = "Telefon musí mít 9 číslic.";
+    const normalizedPhone = normalizePhone(phone);
+    if (!normalizedPhone) {
+      nextErrors.phone =
+        "Zadejte telefon ve formátu 731 830 897 nebo +420… / +421…";
     }
 
     if (!selectedTopic) {
@@ -218,6 +272,10 @@ const LeadFormCard = ({
       return;
     }
 
+    if (!normalizedPhone) {
+      return;
+    }
+
     setErrors({});
     setStatus({ state: "submitting" });
 
@@ -225,7 +283,7 @@ const LeadFormCard = ({
       const payload: LeadFormPayload = {
         name: fullName.trim(),
         email: email.trim(),
-        phone: phoneDigits || undefined,
+        phone: normalizedPhone.national,
         topic: selectedTopic,
         message: note.trim() || undefined,
       };
@@ -315,12 +373,11 @@ const LeadFormCard = ({
                 Telefon <span className={s.required}>*</span>
               </span>
               <div className={s.phoneGroup}>
-                <span className={s.phonePrefix}>+420</span>
                 <input
                   type="tel"
                   name="phone"
                   inputMode="numeric"
-                  placeholder="731 830 897"
+                  placeholder="+420 731 830 897"
                   autoComplete="tel"
                   value={phone}
                   onChange={(e) => {

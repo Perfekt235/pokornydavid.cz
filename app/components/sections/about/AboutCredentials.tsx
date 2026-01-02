@@ -34,7 +34,7 @@ const AboutCredentials = () => {
           </Reveal>
         </div>
       </Reveal>
-      <Reveal as="div" from="bottom" className={s.card}>
+      <Reveal disabled as="div" from="bottom" className={s.card}>
         <div className={s.subTitleRow}>
           <span className={s.titleAccent} aria-hidden />
           <p className={s.subTitle}>Certifikáty</p>
@@ -42,7 +42,7 @@ const AboutCredentials = () => {
 
         <ul className={s.list}>
           {CERTS.map((item, i) => (
-            <Reveal key={item.href} as="li" from="bottom" delay={0.06 + i * 0.05}>
+            <Reveal disabled key={item.href} as="li" from="bottom" delay={0.06 + i * 0.05}>
               <a href={item.href} target="_blank" rel="noopener noreferrer">
                 <span>{item.label}</span>
                 <span className={s.badge}>PDF</span>
@@ -57,7 +57,7 @@ const AboutCredentials = () => {
           <p className={s.subTitle}>Právní informace</p>
         </div>
 
-        <Reveal as="div" from="bottom" delay={0.1} className={s.footerLink}>
+        <Reveal disabled as="div" from="bottom" delay={0.1} className={s.footerLink}>
           <a href="/pravni-informace" target="_blank" rel="noreferrer">
             <span>Právní informace</span>
             <Scale className={s.scaleIcon} aria-hidden />
