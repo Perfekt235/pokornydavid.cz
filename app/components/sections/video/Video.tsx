@@ -162,10 +162,10 @@ const Video = () => {
 
         <div className={s.ctaRow}>
           <Reveal from="bottom">
-            <p className={`${s.ctaLead}`}>Co by dávalo smysl u vás?</p>
+            <p className={`${s.ctaLead}`}>Co by dávalo smysl u vás ?</p>
           </Reveal>
           <Reveal from="bottom" className={s.gradientSoft}>
-            Vyplňte krátký formulář
+            Začneme krátkým hovorem
           </Reveal>
           <Reveal from="bottom">
             <p className={s.ctaDescription}>

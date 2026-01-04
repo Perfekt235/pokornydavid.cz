@@ -337,7 +337,7 @@ const LeadFormCard = ({
 
       <SectionReveal once={true} enabled={isSection} from="left">
         <div className={s.formHead}>
-          <p className={s.kicker}>Bez závazku, v klidu</p>
+          <p className={s.kicker}>V klidu a bez závazku</p>
           <h2 className={s.title}>Probereme vaši situaci</h2>
           <p className={s.subtitle}>
             Domluvíme další krok. Ozvu se do 24 hodin.
@@ -377,7 +377,7 @@ const LeadFormCard = ({
                   type="tel"
                   name="phone"
                   inputMode="numeric"
-                  placeholder="725 375 855"
+                  placeholder="Např. 725 375 855"
                   autoComplete="tel"
                   value={phone}
                   onChange={(e) => {
@@ -405,7 +405,7 @@ const LeadFormCard = ({
               type="email"
               name="email"
               autoComplete="email"
-              placeholder="např. jana@seznam.cz"
+              placeholder="Např. jana@seznam.cz"
               value={email}
               onChange={(e) => {
                 setEmail(e.target.value);
@@ -499,7 +499,7 @@ const LeadFormCard = ({
             <textarea
               name="note"
               rows={4}
-              placeholder="Stačí pár slov, pokud chcete"
+              placeholder="Pokud chcete, napište pár slov"
               value={note}
               onChange={(e) => {
                 setNote(e.target.value);

@@ -1,6 +1,7 @@
 .videoSection {
   width: 100%;
-  background: radial-gradient(140% 80% at 50% 110%, #79eb9333, #0000 60%), #0f3a2f;
+  background: radial-gradient(140% 80% at 50% 110%, #79eb9333, #0000 60%),
+    #0f3a2f;
   position: relative;
   overflow: hidden;
 }
@@ -20,17 +21,15 @@
   flex-direction: column;
 }
 
-
 .copyCol {
   display: flex;
   flex-direction: column;
   gap: 16px;
   color: var(--brand-light);
-  flex: 1 1 320px;
   min-height: 100px;
   max-height: 170px;
   margin-top: 150px;
-  margin-bottom: 50px;
+  margin-bottom: 66px;
 }
 
 .headingBlock {
@@ -157,7 +156,6 @@
 .videoCard {
   width: 100%;
   height: 90vh;
-  aspect-ratio: 16 / 9;
   position: relative;
   overflow: hidden;
   border-radius: 22px;
@@ -204,23 +202,24 @@
 }
 
 .playButton {
+  color: var(--brand-light);
+  cursor: pointer;
+  z-index: 2;
+  background: none;
+  border: 1px solid #0000;
+  border-radius: 50%;
+  justify-content: center;
+  align-items: center;
+  width: 110px;
+  height: 110px;
+  transition: all 0.3s;
+  display: inline-flex;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  box-shadow: 0 18px 38px rgba(0, 0, 0, 0.4);
-  color: var(--brand-light);
-  cursor: pointer;
-  z-index: 2;
-  transition: all 0.3s ease;
-  width: 110px;
-  height: 110px;
-  background: transparent;
-  border: 1px solid transparent;
+  box-shadow: 0 18px 38px #0006;
+  backdrop-filter: blur(10px);
 }
 
 .playCircle {
@@ -283,7 +282,11 @@
 }
 
 .gradientSoft {
-  background: var(--text-gradient-hero);
+  background: linear-gradient(
+    270deg,
+    var(--brand-primary) 16%,
+    var(--brand-tertiary) 65%
+  );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -364,8 +367,8 @@
 
 .overlayInner {
   position: relative;
-  width: min(90vw, 960px);
-  max-height: 90vh;
+  width: 100%;
+  height: 100%;
   aspect-ratio: 16 / 9;
   background: #000;
   border-radius: 18px;
@@ -392,19 +395,19 @@
 }
 
 .overlayClose {
-  position: absolute;
-  top: 10px;
-  right: 12px;
   z-index: 2;
-  border: none;
-  background: rgba(0, 0, 0, 0.5);
-  color: var(--brand-light);
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
+  color: var(--brand-tertiary);
   cursor: pointer;
-  font-size: 18px;
+  border: 1px solid var(--brand-tertiary);
+  background: #00000080;
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+  font-size: 28px;
   line-height: 1;
+  position: absolute;
+  top: 8px;
+  right: 8px;
 }
 
 .overlayFullscreen {
@@ -412,14 +415,14 @@
   top: 10px;
   left: 12px;
   z-index: 2;
-  border: none;
+  border: 1px solid var(--brand-tertiary);
   background: rgba(0, 0, 0, 0.5);
-  color: var(--brand-light);
+  color: var(--brand-tertiary);
   width: 32px;
   height: 32px;
   border-radius: 50%;
   cursor: pointer;
-  font-size: 18px;
+  font-size: 25px;
   line-height: 1;
 }
 

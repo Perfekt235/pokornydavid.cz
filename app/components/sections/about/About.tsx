@@ -114,14 +114,14 @@ const About = () => {
 
               <article className={`${s.card} ${s.secondaryCard}`}>
                 <Reveal from="bottom fade">
-                  <h3>Co by dávalo smysl u vás?</h3>
+                  <h3>Co by dávalo smysl u vás ?</h3>
                 </Reveal>
                 <Reveal from="bottom fade">
-                  <h4 className={s.body}>Vyplňte krátký formulář</h4>
+                  <h4 className={s.body}>Začneme krátkým hovorem</h4>
                 </Reveal>
                 <Reveal from="bottom fade">
                   <h5 className={s.body}>
-                    Udělejme si jasno v tom, co řešíte a co má smysl řešit dál.
+                    Pomůže mi pochopit, kde dnes stojíte a co má smysl řešit hned.
                   </h5>
                 </Reveal>
                 <Reveal from="bottom fade">

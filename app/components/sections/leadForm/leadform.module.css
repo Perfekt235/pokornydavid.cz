@@ -182,11 +182,13 @@
 }
 
 .kicker {
-  font-size: 12px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
   color: var(--brand-tertiary);
-  text-shadow: 0 0 16px rgba(var(--brand-tertiary-rgb), 0.65);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  text-shadow: 0 0 35px #d6ffade3;
+  font-size: 12px;
+  font-weight: 700;
+  margin-bottom: 6px;
 }
 
 .title {
@@ -268,7 +270,6 @@
     background-color 0.18s ease;
   font-size: 15px;
 }
-
 
 .phonePrefix {
   display: inline-flex;

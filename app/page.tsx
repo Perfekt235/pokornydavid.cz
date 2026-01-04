@@ -19,6 +19,7 @@ import TextMarquee from "./ui/animations/TextMarquee";
 import marqueeStyles from "./ui/animations/textMarquee.module.css";
 import LogoMark from "./svgr/LogoMark";
 import { GoalsVelocityMarquee } from "./ui/animations/GoalsVelocityMarquee";
+import ProcessTimeline from "./components/sections/processTimeline/ProcessTimeline";
 const SECTION_KEYS = [
   "hero",
   "about",
@@ -129,6 +130,10 @@ export default function Page() {
         <section id="video" data-section-key="video">
           <Video />
         </section>
+        <section id="process" data-section-key="process">
+          {/* <Process /> */}
+          <ProcessTimeline />
+        </section>
         <section id="testimonials" data-section-key="testimonials">
           <Testimonials />
         </section>
@@ -138,9 +143,6 @@ export default function Page() {
         </section>
         <GoalsVelocityMarquee />
 
-        <section id="process" data-section-key="process">
-          <Process />
-        </section>
 
         <section id="faq" data-section-key="faq">
           <FAQ />

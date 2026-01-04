@@ -170,7 +170,7 @@
   flex-direction: column;
   gap: 12px;
   color: var(--brand-light);
-  margin-top: 50px;
+  margin-top: 66px;
   align-items: flex-start;
 }
 
@@ -292,7 +292,7 @@
   .headingCont {
     margin-top: 25px;
     align-items: center;
-  } 
+  }
   .descHeading {
     text-align: center;
     max-width: 430px;
@@ -310,6 +310,10 @@
 
   .secondaryCard h5 {
     text-align: center;
+  }
+  .secondaryCard h4 {
+    text-align: center;
+    max-width: 300px;
   }
 
   .photoCard {

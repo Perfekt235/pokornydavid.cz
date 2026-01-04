@@ -29,6 +29,8 @@ export function GoalsVelocityMarquee() {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
+        zIndex: 222,
+        boxShadow: "0px 0px 204px -71px;"
       }}
     >
       <ScrollVelocityContainer
@@ -63,3 +65,5 @@ export function GoalsVelocityMarquee() {
     </div>
   );
 }
+
+

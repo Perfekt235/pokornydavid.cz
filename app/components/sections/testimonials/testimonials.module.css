@@ -1,6 +1,6 @@
 .section {
   width: 100%;
-   background: radial-gradient(140% 80% at 50% -10%, #79eb9333, #0000 60%), #0f3a2f;
+   background: radial-gradient(140% 80% at 50% 110%, #79eb9333, #0000 60%), #0f3a2f;
 }
 
 .inner {
@@ -85,7 +85,7 @@
   font-size: clamp(26px, 2.6vw, 34px);
   line-height: 1.25;
   margin: 0 0 12px;
-  background: linear-gradient(5deg, var(--brand-primary) 16%, var(--brand-tertiary) 65%);;
+  background: linear-gradient(180deg, var(--brand-primary) 16%, var(--brand-tertiary) 65%);;
   -webkit-text-fill-color: transparent;
   -webkit-background-clip: text;
   background-clip: text;

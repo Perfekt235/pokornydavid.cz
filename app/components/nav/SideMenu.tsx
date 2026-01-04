@@ -122,7 +122,7 @@ const SideMenu = ({ sideMenu, setSideMenu }: SideMenuProps) => {
           </a>
 
           <a
-            href="#help"
+            href="#services"
             className={s.navLink}
             onClick={() => setSideMenu(false)}
             ref={(el) => {

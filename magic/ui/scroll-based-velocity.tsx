@@ -50,6 +50,7 @@ const DIRECTION_THRESHOLD = 5;
 const BOOST_MAGNITUDE = 0.9;
 const BOOST_COOLDOWN_MS = 160;
 const BOOST_DECAY_MS = 140;
+const DRAG_THRESHOLD_PX = 8;
 
 /* ============================================================================
  * Context
@@ -145,6 +146,7 @@ function ScrollVelocityRowImpl({
   itemGapPx = 48,
   separatorClassName,
   separatorAfterLast = true,
+  style,
   ...props
 }: ScrollVelocityRowImplProps) {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -161,6 +163,12 @@ function ScrollVelocityRowImpl({
   const isInViewRef = useRef(true);
   const isPageVisibleRef = useRef(true);
   const prefersReducedMotionRef = useRef(false);
+  const isDraggingRef = useRef(false);
+  const startClientXRef = useRef(0);
+  const startClientYRef = useRef(0);
+  const startBaseXRef = useRef(0);
+  const dragIntentLockedRef = useRef(false);
+  const dragIsHorizontalRef = useRef(false);
 
   /* ------------------------------------------------------------------------ */
   /* Boost logic                                                              */
@@ -363,10 +371,76 @@ function ScrollVelocityRowImpl({
   /* Render                                                                   */
   /* ------------------------------------------------------------------------ */
 
+  const handlePointerDown = (
+    e: React.PointerEvent<HTMLDivElement>
+  ) => {
+    isDraggingRef.current = true;
+    dragIntentLockedRef.current = false;
+    dragIsHorizontalRef.current = false;
+
+    startClientXRef.current = e.clientX;
+    startClientYRef.current = e.clientY;
+    startBaseXRef.current = baseX.get();
+
+    try {
+      e.currentTarget.setPointerCapture(e.pointerId);
+    } catch {
+      /* ignore */
+    }
+  };
+
+  const handlePointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (!isDraggingRef.current) return;
+
+    const deltaX = e.clientX - startClientXRef.current;
+    const deltaY = e.clientY - startClientYRef.current;
+
+    if (!dragIntentLockedRef.current) {
+      if (
+        Math.abs(deltaX) >= DRAG_THRESHOLD_PX ||
+        Math.abs(deltaY) >= DRAG_THRESHOLD_PX
+      ) {
+        dragIntentLockedRef.current = true;
+        dragIsHorizontalRef.current =
+          Math.abs(deltaX) > Math.abs(deltaY);
+      } else {
+        return;
+      }
+    }
+
+    if (!dragIsHorizontalRef.current) return;
+
+    e.preventDefault();
+    baseX.set(startBaseXRef.current - deltaX);
+  };
+
+  const handlePointerEnd = (
+    e: React.PointerEvent<HTMLDivElement>
+  ) => {
+    if (!isDraggingRef.current) return;
+
+    isDraggingRef.current = false;
+    dragIntentLockedRef.current = false;
+    dragIsHorizontalRef.current = false;
+
+    try {
+      if (e.currentTarget.hasPointerCapture(e.pointerId)) {
+        e.currentTarget.releasePointerCapture(e.pointerId);
+      }
+    } catch {
+      /* ignore */
+    }
+  };
+
   return (
     <div
       ref={containerRef}
       className={cn("w-full overflow-hidden whitespace-nowrap", className)}
+      style={{ touchAction: "pan-y", ...style }}
+      onPointerDown={handlePointerDown}
+      onPointerMove={handlePointerMove}
+      onPointerUp={handlePointerEnd}
+      onPointerCancel={handlePointerEnd}
       {...props}
     >
       <motion.div

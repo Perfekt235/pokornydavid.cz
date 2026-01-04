@@ -267,7 +267,7 @@
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--brand-tertiary);
-  margin-bottom: 6px;
+  margin-bottom: 30px;
   display: inline-block;
   text-shadow: 0px 0px 35px #d6ffade3;
   opacity: 0;
@@ -292,10 +292,9 @@
   font-size: clamp(15.7px, 1.45vw, 19px);
   line-height: 1.52;
   color: var(--brand-white);
-  margin: 0px 0 20px 0;
+  margin: 23px 0 20px 0;
   opacity: 0;
   animation: heroFadeUp 0.9s ease 0.35s forwards;
-  margin-top: 5px;
 }
 
 /* ACTIONS */

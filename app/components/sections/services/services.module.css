@@ -1,7 +1,7 @@
 .servicesCont {
   position: relative;
   width: 100%;
-   background: radial-gradient(140% 80% at 50% 110%, #79eb9333, #0000 60%), #0f3a2f;
+   background: radial-gradient(140% 80% at 50% -10%, #79eb9333, #0000 60%), #0f3a2f;
   color: #e8f2ec;
   overflow: hidden;
 }
