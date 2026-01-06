@@ -95,34 +95,13 @@ export default function Page() {
 
   return (
     <>
-      <Nav setSideMenu={setSideMenu} sideMenu={sideMenu} />
+      {/* <Nav setSideMenu={setSideMenu} sideMenu={sideMenu} />
       <SideMenu setSideMenu={setSideMenu} sideMenu={sideMenu} />
 
       <main>
         <section id="hero" data-section-key="hero" className={s.sticky}>
           <Hero variants={heroVariants} activeSession={activeSection} />
         </section>
-
-        {/* <TextMarquee
-          items={[
-            "Vlastní bydlení",
-            "Finanční rezerva",
-            "Klidný důchod",
-            "Studium dětí",
-            "Zajištěný příjem",
-            "Ochrana majetku",
-            "Rodinné jistoty",
-            "Plán na míru",
-          ]}
-          icons={Array.from({ length: 5 }).map((_, idx) => (
-            <LogoMark
-              key={`logo-${idx}`}
-              style={{ width: "48px", height: "48px" }}
-            />
-            ))}
-            speedSec={64}
-            className={marqueeStyles.marqueeWrap}
-            /> */}
         <section id="about" data-section-key="about">
           <About />
         </section>
@@ -131,7 +110,7 @@ export default function Page() {
           <Video />
         </section>
         <section id="process" data-section-key="process">
-          {/* <Process /> */}
+      
           <ProcessTimeline />
         </section>
         <section id="testimonials" data-section-key="testimonials">
@@ -147,17 +126,12 @@ export default function Page() {
         <section id="faq" data-section-key="faq">
           <FAQ />
         </section>
-
-        {/* <section id="fast-guide" data-section-key="fast-guide">
-          <FastGuide />
-        </section> */}
-
         <section id="lead-form" data-section-key="lead-form">
           <LeadForm />
         </section>
       </main>
 
-      <Footer />
+      <Footer /> */}
     </>
   );
 }
