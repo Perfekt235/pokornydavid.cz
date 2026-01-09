@@ -95,7 +95,7 @@ export default function Page() {
 
   return (
     <>
-      {/* <Nav setSideMenu={setSideMenu} sideMenu={sideMenu} />
+      <Nav setSideMenu={setSideMenu} sideMenu={sideMenu} />
       <SideMenu setSideMenu={setSideMenu} sideMenu={sideMenu} />
 
       <main>
@@ -131,7 +131,7 @@ export default function Page() {
         </section>
       </main>
 
-      <Footer /> */}
+      <Footer />
     </>
   );
 }

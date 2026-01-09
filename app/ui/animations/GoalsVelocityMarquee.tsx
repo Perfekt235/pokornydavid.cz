@@ -30,7 +30,7 @@ export function GoalsVelocityMarquee() {
         justifyContent: "center",
         alignItems: "center",
         zIndex: 222,
-        boxShadow: "0px 0px 204px -71px;"
+        boxShadow: "0px 0px 204px -71px"
       }}
     >
       <ScrollVelocityContainer

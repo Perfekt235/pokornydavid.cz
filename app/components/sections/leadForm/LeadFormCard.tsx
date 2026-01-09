@@ -14,8 +14,8 @@ import s from "./leadform.module.css";
 import { Reveal } from "@/app/ui/animations/Reveal";
 import { StatusToast } from "./StatusToast";
 import { Send } from "lucide-react";
-import { createApi } from "@/lib/api";
 import type { LeadFormPayload, LeadTopic } from "@/lib/api";
+import { api } from "@/src/services/api";
 
 export const leadFormTopics = [
   "Hypotéka & bydlení",
@@ -91,8 +91,6 @@ const LeadFormCard = ({
   } | null>(null);
   const triggerRef = useRef<HTMLButtonElement | null>(null);
   const menuRef = useRef<HTMLDivElement | null>(null);
-  const api = useMemo(() => createApi(), []);
-
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (!isOpen) return;
@@ -288,7 +286,7 @@ const LeadFormCard = ({
         message: note.trim() || undefined,
       };
 
-      await api.leadForm.submit(payload);
+      await api.submitLead(payload);
 
       setStatus({
         state: "success",
